@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="teams">
+<!-- 각 mapper 파일을 구별해야 되기 대문에 namespace가 필요함(테이블명) -->
+
+
+<select id="teamList" resultType="Team" parameterType="Team">
+select grnd_no grndNo, grnd_num grndNum,leader_no leaderNo,is_show isShow,password,name,logo,regdate
+from teams
+where grnd_no=#{grndNo} and grnd_num =#{grndNum}
+</select>
+
+
+<select id="teamConfirm" parameterType="Team" resultType="int">
+select grnd_no grndNo
+from teams
+where password=#{password} and grnd_no=#{grndNo} and grnd_num=#{grndNum} and leader_no=#{leaderNo}
+</select>
+
+
+<delete id="deleteTeam" parameterType="Team">
+delete teams
+where  grnd_no=#{grndNo} and grnd_num=#{grndNum} and leader_no=#{leaderNo}
+</delete>
+
+<insert id="insertTeam" parameterType="Team">
+insert into teams(grnd_no,grnd_num,leader_no,is_show,password,name,logo,regdate)
+values(#{grndNo},#{grndNum},#{leaderNo},#{isShow},#{password},#{name},#{logo},systimestamp)
+</insert>
+</mapper>

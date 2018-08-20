@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="participations">
+<!-- 각 mapper 파일을 구별해야 되기 대문에 namespace가 필요함(테이블명) -->
+
+<select id="selectListScore" parameterType="Participation" resultType="Score">
+	SELECT u.no no,u.nickname nickname, u.profile profile, r.K kill, r.D death, r.A assi,t.total, NVL(w.win,0) win, p.rank rank
+	FROM users u, 
+	(SELECT ROUND(AVG(kill),2) K, ROUND(AVG(death),2) D, ROUND(AVG(assi),2) A,user_no userNo
+	FROM records
+	WHERE match_no IN(
+	SELECT no 
+	FROM matchs 
+	WHERE grnd_no = #{grndNo} AND grnd_num = #{grndNum})
+	GROUP BY user_no) r,
+	(SELECT user_no userNo, rank
+	FROM participations
+	WHERE grnd_no = #{grndNo} AND grnd_num = #{grndNum}) p,
+	(SELECT count(*) total, user_no userNo
+	FROM records
+	WHERE match_no IN(
+	SELECT no 
+	FROM matchs 
+	WHERE grnd_no = #{grndNo} AND grnd_num = #{grndNum})
+	GROUP BY user_no) t,
+	(SELECT count(*) win,winner_no userNo
+	FROM games
+	WHERE match_no IN(SELECT no FROM matchs WHERE grnd_no = #{grndNo} AND grnd_num = #{grndNum})
+	GROUP BY winner_no) w
+	WHERE u.no = r.userNo
+	AND u.no = p.userNo
+	AND u.no = t.userNo
+	AND u.no = w.userNo(+)
+	ORDER BY 9
+</select>
+
+	<select id="selectTotal" resultType="int" parameterType="int">
+		SELECT count(*)
+		FROM participations
+		WHERE grnd_no = #{grndNo}
+	</select>
+	
+	<insert id="insertParticipation" parameterType="Participation">
+	insert into participations(grnd_no,user_no,grnd_num,status,regdate)
+	values(#{grndNo},#{userNo},#{grndNum},'W',systimestamp)
+	</insert>
+
+
+<select id="selectApplication"  parameterType="Participation" resultType="Participation">
+select grnd_no grndNo,user_no userNo,grnd_num grndNum,rank,status,regdate
+from participations
+where user_no=#{userNo} and grnd_no=#{grndNo} and grnd_num =#{grndNum}
+
+</select>
+
+
+<delete id="delete" parameterType="Participation">
+delete participations
+where grnd_no=#{grndNo} and user_no=#{userNo} and grnd_num=#{grndNum}
+
+</delete>
+
+<!--기원이꺼  -->
+
+	<select id="selectApplyList" resultType="Participation" parameterType="map">
+		SELECT GRND_NO grndNo,USER_NO userNo,GRND_NUM grndNum,RANK,STATUS,REGDATE,NICKNAME userNickname,PROFILE userProfile
+		FROM(
+		    SELECT GRND_NO,USER_NO,GRND_NUM,RANK,STATUS,REGDATE,NICKNAME,PROFILE,rownum r
+		    FROM(
+		        select GRND_NO,USER_NO,GRND_NUM,RANK,STATUS,p.REGDATE,NICKNAME,PROFILE
+		        from PARTICIPATIONS p, USERS u
+		        WHERE  p.USER_NO = u.NO
+		        AND
+		        status=#{type}
+		        AND
+		        GRND_NO=#{grndNo} AND GRND_NUM = #{grndNum}
+		        ORDER BY p.REGDATE DESC
+		    )
+		)
+		WHERE r between #{start} AND #{end}
+	</select>
+	
+		<select id="selectGrndTotal" resultType="int" parameterType="map">
+		SELECT count(*) 
+		FROM Participations
+		WHERE status=#{type}
+		AND
+		GRND_NO=#{grndNo} AND GRND_NUM = #{grndNum}
+	</select>
+	
+		
+	<update id="updateStatus" parameterType="Participation">
+		UPDATE participations
+		SET status = 'C'
+		WHERE 
+		grnd_no = #{grndNo} 
+		AND
+		grnd_num = #{grndNum}
+		AND
+		user_no  = #{userNo}
+	</update>
+	
+		<delete id="deleteAsUserNoList" parameterType="map">
+		DELETE participations
+		WHERE 
+		grnd_no = #{grndNo} 
+		AND
+		grnd_num = #{grndNum}
+		AND
+		user_no  in 
+		<foreach collection="userNoList" item="userNo" separator=","  open="(" close=")">
+			#{userNo}
+		</foreach>
+	</delete>
+</mapper>

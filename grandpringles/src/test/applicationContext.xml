@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd">
+		
+		<!-- WAS의 DAteSource을 얻어옴(JNDI) -->
+		
+		<jee:jndi-lookup id= "dataSource" jndi-name="java:comp/env/oraclexe"/>
+<!-- SqlSessionFactory  설정 -->
+<bean 
+id = "sqlSessionFactory"
+p:dataSource-ref="dataSource"
+p:configLocation="WEB-INF/mybatis-config.xml"
+class ="org.mybatis.spring.SqlSessionFactoryBean"
+/>
+<!-- SqlSession 설정 -->
+<bean 
+id="sqlSession"
+class = "org.mybatis.spring.SqlSessionTemplate">
+	<constructor-arg ref="sqlSessionFactory"></constructor-arg>
+</bean>
+
+
+<bean id="grandprixesDAO"
+class = "com.firedogs.grandpringles.dao.GrandprixesDAOImpl"
+p:session-ref="sqlSession"
+/>
+
+
+<bean
+id="authenticationsDAO"
+p:session-ref="sqlSession"
+
+class="com.firedogs.grandpringles.dao.AuthenticationsDAOImpl"
+/>
+
+<!-- Service -->
+<bean
+id="grandprixesService"
+class="com.firedogs.grandpringles.service.GrandprixesServiceImpl"
+p:grandprixesDAO-ref="grandprixesDAO"
+/>
+
+<bean id="usersDAO"
+class = "com.firedogs.grandpringles.dao.UsersDAOImpl"
+p:session-ref="sqlSession"
+/>
+
+<!-- Service -->
+<bean
+id="usersSerivce"
+class="com.firedogs.grandpringles.service.UsersSerivceImpl"
+p:usersDAO-ref="usersDAO"
+/>
+
+
+<bean id="grandprixNamesDAO"
+class = "com.firedogs.grandpringles.dao.GrandprixNamesDAOImpl"
+p:session-ref="sqlSession"
+
+/>
+
+<!-- Service -->
+<bean
+id="grandprixNamesService"
+class="com.firedogs.grandpringles.service.GrandprixNamesServiceImpl"
+p:grandprixNamesDAO-ref="grandprixNamesDAO"
+
+/>
+
+<bean 
+id="authenticationsService"
+p:authenticationsDAO-ref="authenticationsDAO"
+class="com.firedogs.grandpringles.service.AuthenticationsServiceImpl"
+/>
+
+
+<!-- 이메일 관련 -->
+<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="smtp.gmail.com" />
+    <property name="port" value="587" />
+    <property name="username" value="GrandPringlesManager@gmail.com" />
+    <property name="password" value="rmfkdvmfldrmftm" />
+    <property name="javaMailProperties">
+        <props>
+            <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+            <prop key="mail.smtp.starttls.enable">true</prop>
+            <prop key="mail.smtp.auth">true</prop>
+        </props>
+    </property>
+</bean>
+
+<bean id="mailService" class="com.firedogs.grandpringles.service.MailServiceImpl">
+    <property name="javaMailSender" ref="javaMailSender" />
+    <property name="authenDAO" ref="authenticationsDAO"/>
+</bean>
+
+</beans>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="participant_conditions">
+<!-- 각 mapper 파일을 구별해야 되기 대문에 namespace가 필요함(테이블명) -->
+
+<insert id="insert" parameterType="ParticipantCondition">
+	insert into PARTICIPANT_CONDITIONS(grnd_no,grnd_num,num, is_image,is_necessary,title,regdate)
+	values(#{grndNo} ,#{grndNum},#{num},#{isImage},#{isNecessary},#{title},systimestamp)
+
+</insert>
+
+<select id="conditionList" parameterType="ParticipantCondition" resultType="ParticipantCondition">
+select grnd_no grndNo,grnd_num grndNum,num,is_image isImage,is_necessary isNecessary,title,regdate
+from participant_conditions
+where grnd_no=#{grndNo} and grnd_no=#{grndNo}
+</select>
+
+	<select id="selectList" parameterType="map" resultType="ParticipantCondition">
+		SELECT
+		GRND_NO grndNo,
+		GRND_NUM grndNum,
+		NUM,
+		IS_IMAGE isImage,
+		IS_NECESSARY isNecessary,
+		TITLE,
+		REGDATE
+		FROM participant_conditions
+		WHERE grnd_no = #{grndNo} AND grnd_num = #{grndNum}
+		ORDER BY num
+	</select>
+
+</mapper>

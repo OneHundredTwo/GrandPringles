@@ -1,0 +1,160 @@
+/* < 공통 CSS 적용 > */
+/* 1번_ 공통 label CSS */
+.label_css {
+    width: 150px;                               /*너비*/
+    height: 30px;                               /*높이*/
+    background:rgb(235,235,235);         /*배경색*/
+    font-size: 18px;                            /*글자크기*/
+    color: #424242;                             /*글자색*/
+    line-height: 30px;                          /*폰트수직정렬*/
+    text-align: center;                         /*폰트수평정렬*/
+    border: 1px solid #BDBDBD;              /*border*/
+    /*border-radius: 30px;                        !*둥근보더*!*/
+    position: absolute;                         /*상대적위치적용(display-inline할 필요가 사라짐)*/
+}
+/* 2번_ 공통 label:hover */
+/*.label_css:hover {*/
+    /*transform: scale(1.2);                      !*크기를 크게*!*/
+    /*transition: .3s ease;                       !*효과적용*!*/
+/*}*/
+/* 3번_ 공통 input CSS */
+.input_css {
+    height: 30px;                               /*높이*/
+    background: rgb(235,235,235);                    /*배경색*/
+    font-size: 15px;                            /*글자크기*/
+    color: #424242;                             /*글자색*/
+    line-height: 30px;                          /*폰트수직정렬*/
+    border: none;                     /*border*/
+    padding-left: 10px;                         /*padding-left*/
+    position: absolute;                         /*상대적위치적용*/
+    border-bottom: 1px solid #BDBDBD;
+}
+/* 4번_ 공통 input:hover */
+/*.input_css:hover {*/
+    /*background: #E0E0E0;                        !*배경색*!*/
+    /*transform: scale(1.1);                      !*크기를 크게*!*/
+    /*transition: .3s ease;                       !*효과적용*!*/
+/*}*/
+/* 5번_ 공통 라디오박스를 담는 span 요소 CSS */
+.radio_css {
+    width: 300px;                               /*너비*/
+    height: 30px;                               /*높이*/
+    line-height: 30px;                          /*폰트수직정렬*/
+    text-align: center;                         /*폰트수평정렬*/
+    position: absolute;                         /*상대적위치적용*/
+}
+/* 6번_ 공통 라디오박스의 label 요소(left,right)의 공통 CSS */
+.radio_label_left, .radio_label_right {
+    width: 100px;                               /*너비*/
+    height: 30px;                               /*높이*/
+    cursor: pointer;                            /*커서모양*/
+    position: absolute;                         /*상대적위치적용*/
+    /* 위치 적용 */
+    top: 0px;
+}
+/* 7번_ 공통 라디오박스의 label 요소(left,right)의:hover */
+.radio_label_left:hover, .radio_label_right:hover {
+    background: #E0E0E0;                        /*배경색*/
+    transition: .3s ease;                       /*효과적용*/
+}
+/* 8번_ 공통 라디오박스의 왼쪽 label 요소 */
+.radio_label_left {
+    /* 위치 적용 */
+    left: 0px;
+}
+/* 9번_ 공통 라디오박스의 오른쪽 label 요소 */
+.radio_label_right {
+    /* 위치 적용 */
+    right: 0px;
+}
+/* 10번_ 공통 라디오박스의 input 요소(left,right)의 공통 CSS */
+.radio_input_left, .radio_input_right {
+    cursor: pointer;
+}
+/* 11번_ 공통 버튼 요소 */
+.button_css {
+    z-index: 1;                                /*가장 앞으로 배치하여 보여지도록 함*/
+    height:19px;                               /*높이*/
+    border: none;                              /*border*/
+    cursor: pointer;                           /*커서모양*/
+    position: absolute;                        /*상대적위치적용*/
+    /* 위치 적용 */
+    right: 53px;
+}
+/* 12번_ 공통 li 요소 */
+.li_Box_css {
+    text-align: center;
+    line-height: 30px;
+    position: absolute;
+    left: 30px;
+}
+/* 13번_ 공통 달력 input 요소 */
+.input_calendar_css {
+    height: 27px;
+    width: 170px;
+    text-align: center;
+    line-height: 25px;
+    border:1px solid #BDBDBD;
+    background: transparent;
+    font-size: 15px;
+    color: #424242;
+    font-weight: 900;
+    position: absolute;
+    top: 0px;
+}
+
+/* 14번_ 공통 상품추가 label 요소 */
+.item_label_css {
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    border: 1px solid #BDBDBD;
+    background:#E0E0E0;
+    position: absolute;
+    left: 12px;
+    border-radius: 0px;
+    padding: 3px;
+    font-size: 15px;
+    border: none;
+}
+
+/* 15번_ 공통 상품추가 input 요소 */
+.item_input_css {
+    width: 240px;
+    height: 20px;                               /*높이*/
+    background: transparent;                    /*배경색*/
+    font-size: 15px;                            /*글자크기*/
+    color: #424242;                             /*글자색*/
+    line-height: 20px;                          /*폰트수직정렬*/
+    border: 3px solid #fff;                     /*border*/
+    padding-left: 10px;                         /*padding-left*/
+    position: absolute;                         /*상대적위치적용*/
+    margin-left: 10px;
+    padding-left: 10px;
+    top: 30px;
+}
+
+/* 16번_ 약관설정 button  요소 */
+.button_clause_css {
+    width: 40px;                               /*너비*/
+    height: 40px;                              /*높이*/
+    background: #fafafa;                       /*배경색*/
+    font-size: 30px;                           /*글자크기*/
+    line-height:30px;                         /*폰트수직정렬*/
+    text-align: center;                        /*폰트수평정렬*/
+    border: 3px solid #fff;                    /*border*/
+    border-radius: 50px;                       /*둥근보더*/
+    cursor: pointer;                           /*커서모양*/
+    z-index: 1;                                /*가장 앞으로 배치하여 보여지도록 함*/
+    position: absolute;                        /*상대적위치적용*/
+    padding: 0px;
+}
+
+.label_css{
+	top: 130px;
+    left: 50px;
+    z-index: 1;
+    border: none;
+    background: #E0E0E0;
+}

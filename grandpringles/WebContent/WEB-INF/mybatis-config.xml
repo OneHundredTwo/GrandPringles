@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd"
+>
+
+<configuration>
+	<!-- mybatis 셋팅 -->
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+		<!-- null이라고 쓰면 jdbcType 에러 뜸, NULL이라고 써야댐 -->
+	</settings>
+	<!-- 자료형 별칭 -->
+	<typeAliases>
+		<!-- <typeAlias alias="" type="com.firedogs.grandpringles.vo."/>  -->
+
+		 <typeAlias alias="AnnounceUpdateLog" type="com.firedogs.grandpringles.vo.AnnounceUpdateLog"/> 
+		 <typeAlias alias="Authentication" type="com.firedogs.grandpringles.vo.Authentication"/> 
+		 <typeAlias alias="Betting" type="com.firedogs.grandpringles.vo.Betting"/> 
+		 <typeAlias alias="Board" type="com.firedogs.grandpringles.vo.Board"/> 
+		 <typeAlias alias="Clause" type="com.firedogs.grandpringles.vo.Clause"/> 
+		 <typeAlias alias="Comment" type="com.firedogs.grandpringles.vo.Comment"/> 
+		 <typeAlias alias="Discussion" type="com.firedogs.grandpringles.vo.Discussion"/> 
+		 <typeAlias alias="Game" type="com.firedogs.grandpringles.vo.Game"/> 
+		 <typeAlias alias="GrandprixName" type="com.firedogs.grandpringles.vo.GrandprixName"/> 
+		 <typeAlias alias="Grandprix" type="com.firedogs.grandpringles.vo.Grandprix"/> 
+		 <typeAlias alias="Liking" type="com.firedogs.grandpringles.vo.Liking"/> 
+		 <typeAlias alias="Manager" type="com.firedogs.grandpringles.vo.Manager"/> 
+		 <typeAlias alias="Match" type="com.firedogs.grandpringles.vo.Match"/> 
+		 <typeAlias alias="ParticipantApplication" type="com.firedogs.grandpringles.vo.ParticipantApplication"/> 
+		 <typeAlias alias="ParticipantCondition" type="com.firedogs.grandpringles.vo.ParticipantCondition"/> 
+		 <typeAlias alias="Participation" type="com.firedogs.grandpringles.vo.Participation"/> 
+		 <typeAlias alias="Potatochip" type="com.firedogs.grandpringles.vo.Potatochip"/> 
+		 <typeAlias alias="PrixUpdateLog" type="com.firedogs.grandpringles.vo.PrixUpdateLog"/> 
+		 <typeAlias alias="Prix" type="com.firedogs.grandpringles.vo.Prix"/> 
+		 <typeAlias alias="Record" type="com.firedogs.grandpringles.vo.Record"/> 
+		 <typeAlias alias="ScheduleUpdateLog" type="com.firedogs.grandpringles.vo.ScheduleUpdateLog"/> 
+		 <typeAlias alias="TeamMember" type="com.firedogs.grandpringles.vo.TeamMember"/> 
+		 <typeAlias alias="Team" type="com.firedogs.grandpringles.vo.Team"/> 
+		 <typeAlias alias="User" type="com.firedogs.grandpringles.vo.User"/> 
+		 <typeAlias alias="Vote" type="com.firedogs.grandpringles.vo.Vote"/> 
+		 <typeAlias alias="PageVO" type="com.firedogs.grandpringles.vo.PageVO"/>
+			<typeAlias alias="Score" type="com.firedogs.grandpringles.vo.Score"/> 
+		 
+	</typeAliases>
+	
+
+	<!-- mapper파일들의 경로 설정 -->
+	<mappers>
+		<mapper resource="com/firedogs/grandpringles/mapper/announce_update_logs.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/authentications.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/bettings.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/boards.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/clauses.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/comments.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/discussions.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/games.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/grandprix_names.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/grandprixes.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/likings.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/managers.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/matchs.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/participant_applications.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/participant_conditions.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/participations.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/potatochips.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/prix_update_logs.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/prixes.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/records.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/schedule_update_logs.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/team_members.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/teams.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/users.xml"/>
+		<mapper resource="com/firedogs/grandpringles/mapper/votes.xml"/>
+	</mappers>
+
+</configuration>

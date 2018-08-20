@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="matchs">
+<!-- 각 mapper 파일을 구별해야 되기 대문에 namespace가 필요함(테이블명) -->
+<select id="selectList" parameterType="Grandprix" resultType="Match">
+	SELECT no, grnd_no grndNo, grnd_num grndNum, start_date startDate, part_type partType, 
+			round, red, blue, 
+			status, game_status gameStatus, 
+			match_number matchNumber, regdate 
+	FROM matchs
+	WHERE 
+		grnd_no=#{grndNo} AND grnd_num=#{num}
+		ORDER BY round, match_number
+</select>
+
+<update id="updateStatus" parameterType="Match">
+	UPDATE matchs
+	SET game_status = #{gameStatus}
+	WHERE no=#{no}
+</update>
+
+<select id="selectOne" parameterType="int" resultType="Match">
+	SELECT no, grnd_no grndNo, grnd_num grndNum, start_date startDate, part_type partType, 
+			round, red, blue, 
+			status, game_status gameStatus, 
+			match_number matchNumber, regdate 
+	FROM matchs
+	WHERE no = #{no}
+</select>
+
+<select id="getMatchs" parameterType="Grandprix" resultType="Match">
+	SELECT m.no, grnd_no grndNo, grnd_num grndNum, r.nickname redName, b.nickname blueName 
+	FROM matchs m, users r, users b
+	WHERE m.red = r.no 
+	AND m.blue = b.no 
+	AND grnd_no= #{grndNo} AND grnd_num= #{num}
+</select>
+
+
+<select id="selectRoundMatch" parameterType="Match" resultType="Match">
+	SELECT no, grnd_no grndNo, grnd_num grndNum, start_date startDate, part_type partType, 
+			round, red, blue, 
+			status, game_status gameStatus, 
+			match_number matchNumber, regdate
+	FROM matchs
+	WHERE round=#{round} AND match_number=#{matchNumber} AND grnd_no = #{grndNo} AND grnd_num=#{grndNum}
+</select>
+<!-- 대회정보, no는 수정 불가-->
+<update id="update" parameterType="Match">
+	UPDATE matchs
+	SET 
+		start_date = #{startDate},
+		round=#{round},
+		red=#{red},
+		blue=#{blue},
+		status=#{status},
+		game_status=#{gameStatus}
+	WHERE no=#{no}
+</update>
+
+<update id="updateCorner" parameterType="Match">
+	UPDATE matchs
+	SET red=#{red}, blue=#{blue}
+	WHERE no=#{no}
+</update>
+
+<insert id="insert" parameterType="Match">
+	INSERT INTO matchs
+	(
+	NO,
+	GRND_NO,
+	GRND_NUM,
+	START_DATE,
+	PART_TYPE,
+	ROUND,
+	RED,
+	BLUE,
+	STATUS,
+	GAME_STATUS,
+	MATCH_NUMBER,
+	REGDATE
+	)
+	VALUES(
+		matchs_seq.nextval,
+		#{grndNo},
+		#{grndNum},
+		sysdate,
+		#{partType},
+		#{round},
+		#{red},
+		#{blue},
+		#{status},
+		#{gameStatus},
+		#{matchNumber},
+		systimestamp
+	)
+</insert>
+
+
+<select id="selectWeekMatchs" parameterType="Grandprix" resultType="Match">
+	SELECT m.no, start_date startDate, r.nickname redName, b.nickname blueName, round
+	FROM matchs m, users r, users b
+	WHERE 
+	grnd_no= 4 AND grnd_num =1
+	AND r.no = red
+	AND b.no = blue
+	AND start_date > to_date('2018-04-17 10:04','yyyy-MM-dd HH:MI')
+	ORDER BY start_date
+</select>
+
+
+
+</mapper>

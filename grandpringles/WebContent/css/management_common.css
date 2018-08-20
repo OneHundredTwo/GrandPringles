@@ -1,0 +1,210 @@
+﻿
+/*
+    managementXxx관련 공통 css 
+    tabInfomationContents
+    .vertical_tab
+    tabManagementContents
+*/
+
+/*
+    update_list : 
+    managementNotice, managementSchedule
+*/
+
+.circle_btn {
+    display: inline-block;
+
+    width: 65px;
+    height: 65px;
+    border-radius: 40px;
+
+    vertical-align: top;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+#tabInfomationContents {
+    width: 100px;
+    height: 300px;
+    /*임시크기*/
+    /*margin: auto;*/
+    position: absolute;
+    left: -112px;
+
+}
+
+#tabInfomationContents>*{
+    /*.update_content, .update_list*/
+    /*float: left;*/
+    display: inline-block;
+
+}
+/*탭과 컨텐츠 비율 1:11*/
+
+/* 좌측 네비게이션 바 */
+#tabInfomationContents .vertical_tab {
+    width: 102px;
+
+}
+
+.vertical_tab .vertical_tab_item {
+    display: block;
+
+    width: 112px;
+    height: 82px;
+
+    color: #FFF176;
+    text-decoration: none;
+    text-align: center;
+    line-height: 82px;
+    font-size:20px;
+
+    background: black;
+}
+
+.vertical_tab .vertical_tab_item:hover {
+    /*뭔가 하겠지*/
+
+}
+
+.vertical_tab .vertical_tab_item.on {
+    background:#D2D2D2;
+    color: black;
+    /*border: 2px  #FFF176 solid;*/
+}
+
+
+/*.management_contents_tab 아래의 큰 틀 지정*/
+.management_contents_tab {
+    width: 1015px;
+    /*임시*/
+    min-height:600px;
+
+    background:#D2D2D2;
+    position: absolute;
+    top: 0px;
+    left: 150px;
+  
+/*float: left;*/
+}
+
+.management_contents_tab>* {
+    /*
+             boxSelectSchedule,boxUpdateList
+        */
+    /*float: left;*/
+    display: inline-block;
+    vertical-align:middle;
+
+}
+
+/* boxUpdateList css 적용*/
+#boxUpdateList {
+    background: #E0E0E0;
+    border-radius:10px ;
+    margin: 20px;
+    overflow-y: scroll;
+}
+
+.management_contents_tab .update_list {
+    width: 480px;
+    height:660px;
+}
+
+.update_list li {
+    padding: 15px 0px 15px 0px;
+}
+
+.update_list li>* {
+    display: inline-block;
+
+    vertical-align: top;
+}
+/*who와 what의 비율을 1:5*/
+
+.update_list .who {
+    width: 80px;
+    /* 닉네임 수 제한으로 width한정*/
+    height: 80px;
+
+    text-align: center;
+    color: red;
+}
+
+.update_list .user_nickname {
+    display: inline-block;
+    font-size: 15px;
+}
+
+.update_list .what {
+	position: relative;
+    width: 362px;
+    padding: 15px 6px;
+    border: 3px solid #FAFAFA;
+    border-radius: 5px;
+    margin-left: 10px;
+    font-size: 15px;
+    box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.4);
+    color: #424242;
+    background: #999999;
+}
+
+.update_list .what strong {
+    font-weight: 600;
+    font-size: 18px;
+    color: #000;
+}
+
+
+.update_list .what .ymd_date {
+        position: absolute;
+        right: 0px;
+        /* 아 맞다 오른쪽하고 오른쪽을 맞추는거지*/
+        bottom: -16px;
+
+        font-size: 13px;
+        color: #424242;
+}
+
+.update_list .what::before {
+	display: inline-block;
+    position: absolute;
+    left: -20px;
+    top: 18px;
+    border: 10px solid transparent;
+    border-right: 10px solid #FAFAFA;
+    content: "";
+}
+
+#boxInfoContent {
+    width: 1200px;
+    min-height: 700px;
+    background:#FAFAFA;
+    position: relative;
+    margin: auto;
+    top: 10px;
+    height: 500px;
+    background: #212121;
+    position: relative;
+}
+
+#boxSelectSchedule {
+    background:#E0E0E0;
+    border-radius: 10px;
+    margin: 0px 60px 80px 60px;
+    width: 320px;
+    height: 520px;
+    text-align: center;
+}
+
+
+#btnUpdateSchedule {
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+#btnUpdateSchedule:hover {
+    box-shadow: 0px 0px ;
+}

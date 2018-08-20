@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+		
+		<!-- WAS의 DAteSource을 얻어옴(JNDI) -->
+		
+		<jee:jndi-lookup id= "dataSource" jndi-name="java:comp/env/oraclexe"/>
+		
+	
+<!-- 트랜잭션을 annotation으로 관리한다는 뜻 -->
+<tx:annotation-driven/>
+	
+		
+<!-- 트랜잭션처리 -->
+<bean id="transactionManager"
+p:dataSource-ref="dataSource"
+class="org.springframework.jdbc.datasource.DataSourceTransactionManager"/>
+		
+		
+		
+		
+		
+<!-- SqlSessionFactory  설정 -->
+<bean 
+id = "sqlSessionFactory"
+p:dataSource-ref="dataSource"
+p:configLocation="WEB-INF/mybatis-config.xml"
+class ="org.mybatis.spring.SqlSessionFactoryBean"
+/>
+<!-- SqlSession 설정 -->
+<bean 
+id="sqlSession"
+class = "org.mybatis.spring.SqlSessionTemplate">
+	<constructor-arg ref="sqlSessionFactory"></constructor-arg>
+</bean>
+
+
+<bean id="grandprixesDAO"
+class = "com.firedogs.grandpringles.dao.GrandprixesDAOImpl"
+p:session-ref="sqlSession"
+/>
+
+<!-- Service -->
+<bean
+id="grandprixesService"
+class="com.firedogs.grandpringles.service.GrandprixesServiceImpl"
+p:grandprixesDAO-ref="grandprixesDAO"
+p:grandprixNamesDAO-ref="grandprixNamesDAO"
+p:managersDAO-ref="managersDAO"
+p:prixesDAO-ref="prixesDAO"
+p:participantConditionDAO-ref="participantConditionsDAO"
+p:matchsDAO-ref="matchsDAO"
+p:announceUpdateLogsDAO-ref="announceUpdateLogsDAO"
+/>
+
+<bean id="usersDAO"
+class = "com.firedogs.grandpringles.dao.UsersDAOImpl"
+p:session-ref="sqlSession"
+/>
+
+<!-- Service -->
+<bean
+id="usersSerivce"
+class="com.firedogs.grandpringles.service.UsersSerivceImpl"
+p:usersDAO-ref="usersDAO"
+/>
+
+
+<bean id="grandprixNamesDAO"
+class = "com.firedogs.grandpringles.dao.GrandprixNamesDAOImpl"
+p:session-ref="sqlSession"
+/>
+
+<!-- Service -->
+<bean
+id="grandprixNamesService"
+class="com.firedogs.grandpringles.service.GrandprixNamesServiceImpl"
+p:grandprixNamesDAO-ref="grandprixNamesDAO"
+/>
+
+
+
+<bean id="managersDAO"
+class = "com.firedogs.grandpringles.dao.ManagersDAOImpl"
+p:session-ref="sqlSession"
+/>
+
+<!-- Service -->
+<bean
+id="managersService"
+class="com.firedogs.grandpringles.service.ManagersServiceImpl"
+p:managersDAO-ref="managersDAO"
+/>
+
+
+
+<bean id="prixesDAO"
+class = "com.firedogs.grandpringles.dao.PrixesDAOImpl"
+p:session-ref="sqlSession"
+/>
+
+
+<!-- Service -->
+<bean
+id="prixesService"
+class="com.firedogs.grandpringles.service.PrixesServiceImpl"
+p:prixesDAO-ref="prixesDAO"
+/>
+
+
+<bean id="participantConditionsDAO"
+class = "com.firedogs.grandpringles.dao.ParticipantConditionsDAOImpl"
+p:session-ref="sqlSession"
+/>
+
+
+<!-- Service -->
+<bean
+id="participantConditionService"
+class="com.firedogs.grandpringles.service.ParticipantConditionServiceImpl"
+p:participantConditionDAO-ref="participantConditionsDAO"
+/>
+
+
+<bean id="clausesDAO"
+class = "com.firedogs.grandpringles.dao.ClausesDAOImpl"
+p:session-ref="sqlSession"
+/>
+
+
+<!-- Service -->
+<bean
+id="clausesService"
+class="com.firedogs.grandpringles.service.ClausesServiceImpl"
+p:clausesDAO-ref="clausesDAO"
+/>
+
+
+
+<bean id="participantApplicationsDAO"
+class = "com.firedogs.grandpringles.dao.ParticipantApplicationsDAOImpl"
+p:session-ref="sqlSession"
+/>
+
+
+<!-- Service -->
+<bean
+id="participantApplicationsService"
+class="com.firedogs.grandpringles.service.ParticipantApplicationsServiceImpl"
+p:applicationsDAO-ref="participantApplicationsDAO"
+/>
+
+<bean
+id="participationsDAO"
+p:session-ref="sqlSession"
+	class="com.firedogs.grandpringles.dao.ParticipationsDAOImpl"
+/>
+
+<bean
+id="participationsService"
+p:participationsDAO-ref="participationsDAO"
+p:grandprixesDAO-ref="grandprixesDAO"
+p:participantApplicationsDAO-ref="participantApplicationsDAO"
+	class="com.firedogs.grandpringles.service.ParticipationsServiceImpl"
+/>
+
+<!-- Team -->
+
+ <bean
+ id="teamsDAO"
+ p:session-ref="sqlSession"
+ class="com.firedogs.grandpringles.dao.TeamsDAOImpl"
+ />
+ 
+ <bean
+ id="teamsSerivice"
+ p:teamsDAO-ref="teamsDAO"
+ class="com.firedogs.grandpringles.service.TeamsSeriviceImpl"
+ />
+
+<!-- 기원이꺼 -->
+
+<bean id="boardsDAO"
+	class="com.firedogs.grandpringles.dao.BoardsDAOImpl"
+	p:session-ref="sqlSession"/>
+<bean
+	id="boardsService"
+	p:commentsDAO-ref="commentsDAO"
+	p:boardsDAO-ref="boardsDAO"
+	p:likingsDAO-ref="likingsDAO"
+	p:matchsDAO-ref="matchsDAO"
+	class="com.firedogs.grandpringles.service.BoardsServiceImpl"
+/>
+
+<bean id="matchsDAO"
+	class="com.firedogs.grandpringles.dao.MatchsDAOImpl"
+	p:session-ref="sqlSession"/>
+<bean id="gamesDAO"
+	class="com.firedogs.grandpringles.dao.GamesDAOImpl"
+	p:session-ref="sqlSession"/>
+<bean id="recordsDAO"
+	class="com.firedogs.grandpringles.dao.RecordsDAOImpl"
+	p:session-ref="sqlSession"/>	
+<bean id="announceUpdateLogsDAO"
+	class="com.firedogs.grandpringles.dao.AnnounceUpdateLogsDAOImpl"
+	p:session-ref="sqlSession"/>
+<bean id="showGrndInfoService"
+	class="com.firedogs.grandpringles.service.ShowGrndInfoServiceImpl"
+	p:boardsDAO-ref="boardsDAO"
+	p:grandprixesDAO-ref="grandprixesDAO"
+	p:grandprixNamesDAO-ref="grandprixNamesDAO"
+	p:usersDAO-ref="usersDAO"/>
+	
+		
+<bean id="grandManagementService"
+	class="com.firedogs.grandpringles.service.GrandManagementServiceImpl"
+	p:auLogsDAO-ref="announceUpdateLogsDAO"
+	p:partsDAO-ref="participationsDAO"
+	p:paDAO-ref="participantApplicationsDAO"
+	p:pcDAO-ref="participantConditionsDAO"
+	p:grandprixDAO-ref="grandprixesDAO"
+	p:matchsDAO-ref="matchsDAO"
+	p:gamesDAO-ref="gamesDAO"
+	p:recordsDAO-ref="recordsDAO"
+	p:grandprixNamesDAO-ref="grandprixNamesDAO"
+	p:managersDAO-ref="managersDAO"
+	/>
+	
+	<!-- 민호꺼  -->
+	
+	<bean
+	id="likingsDAO"
+	p:session-ref="sqlSession"
+	class="com.firedogs.grandpringles.dao.LikingsDAOImpl"
+/>
+
+<bean
+	id="likingsService"
+	p:likingsDAO-ref="likingsDAO"
+	class="com.firedogs.grandpringles.service.LikingsServiceImpl"
+/>
+	<bean
+	id="commentsDAO"
+	p:session-ref="sqlSession"
+	class="com.firedogs.grandpringles.dao.CommentsDAOImpl"
+/>
+
+<bean 
+	id="commentsService"
+	p:commentsDAO-ref="commentsDAO"
+	class="com.firedogs.grandpringles.service.CommentsServiceImpl"
+/>
+	
+
+<!-- 형꺼 -->
+
+
+<bean
+id="authenticationsDAO"
+p:session-ref="sqlSession"
+
+class="com.firedogs.grandpringles.dao.AuthenticationsDAOImpl"
+/>
+
+<bean 
+id="authenticationsService"
+p:authenticationsDAO-ref="authenticationsDAO"
+class="com.firedogs.grandpringles.service.AuthenticationsServiceImpl"
+/>
+
+<!-- 이메일 관련 -->
+<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="smtp.gmail.com" />
+    <property name="port" value="587" />
+    <property name="username" value="GrandPringlesManager@gmail.com" />
+    <property name="password" value="rmfkdvmfldrmftm" />
+    <property name="javaMailProperties">
+        <props>
+            <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+            <prop key="mail.smtp.starttls.enable">true</prop>
+            <prop key="mail.smtp.auth">true</prop>
+        </props>
+    </property>
+</bean>
+
+<bean id="mailService" class="com.firedogs.grandpringles.service.MailServiceImpl">
+    <property name="javaMailSender" ref="javaMailSender" />
+    <property name="authenDAO" ref="authenticationsDAO"/>
+</bean>
+
+</beans>

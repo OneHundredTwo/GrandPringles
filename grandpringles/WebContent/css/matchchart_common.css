@@ -1,0 +1,544 @@
+/*기본크기*/
+#boxMatchChart {
+    width: 1000px;
+    height: 600px;
+
+    text-align: center;
+}
+
+#boxMatchHeader {
+}
+
+#boxMatchHeader .round_head {
+    float: left;
+
+    border-radius: 5px;
+    border-color:rgba(0,255,0,0.8);
+}
+
+#boxMatchBody {
+	height:600px;
+
+	font-size:10px;
+}
+
+#boxMatchBody .round_match{
+	position:relative;
+}
+
+
+
+
+#boxMatchBody .round_body {
+    float: left;
+
+    transition:0.3s ease;
+}
+#boxMatchBody .round_body:hover{
+	background-color:rgba(200,200,200,0.2);
+}
+
+#boxMatchBody .match_info>*{
+    vertical-align: middle;
+}
+
+#boxMatchBody .match_schedule{
+	position:relative;
+	display:inline-block;
+	z-index:1;
+
+	width:35px;
+	height:25px;
+	line-height: 25px;
+	border-radius: 3px;
+
+	background-color:rgba(0,0,0,0.25);
+	cursor:pointer;
+
+	transition: 0.3s ease;
+}
+
+#boxMatchBody .match_box{
+	position: relative;
+	display:inline-block;
+	z-index:1;
+
+	width:180px;
+	height:50px;
+	border-radius: 5px;
+
+	background-color: transparent;
+	box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+	
+	
+}
+
+#boxMatchBody .match_box>div{
+	height:25px;
+	line-height: 25px;
+	position: relative;
+	cursor:pointer;
+}
+
+
+
+#boxMatchBody .match_box>.win{
+	box-shadow: -5px 0px 10px rgba(255,234,0,0.6),5px 0px 10px rgba(255,234,0,0.6),0px 5px 10px rgba(255,234,0,0.6),0px -5px 10px rgba(255,234,0,0.6); 
+}
+
+#boxMatchBody .red_corner{
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+
+	box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+#boxMatchBody .team, #boxMatchBody .score{
+	position:relative;
+	float:left;
+
+	width:126px;
+
+	transition:0.2s ease;
+}
+
+#boxMatchBody .team:hover,#boxMatchBody .score:hover, #boxMatchBody .match_schedule:hover{
+	/*transform:scale(1.1);*/
+}
+#boxMatchBody .red_corner>.team{
+	background-color:rgba(255,0,0,1);
+	/*왼쪽 위 모서리 ... 으... hover하면 커지는효과때문에ㅡㅡ*/
+	border-top-left-radius: 5px;
+}
+#boxMatchBody .blue_corner>.team{
+	background-color:rgba(0,0,255,1);
+
+	border-bottom-left-radius: 5px;
+}
+
+#boxMatchBody .score{
+	float:left;
+
+	width:54px;
+
+	background-color:rgba(125,125,125,0.4);
+}
+
+#boxMatchBody .red_corner>.score{
+	border-top-right-radius: 5px;	
+}
+#boxMatchBody .blue_corner>.score{
+	border-bottom-right-radius: 5px;
+}
+
+#boxMatchBody .vs_layer{
+	/*display: none;*/
+	position:absolute;
+	left:0;
+	top:0;
+}
+.vs_layer polyline{
+	fill:none;
+    stroke:#424242;
+    stroke-width:1px;
+}
+
+#boxMatchBody .detail.on {
+	cursor:default;
+}
+/*해당 round_match내에서 detail이 다른 round_match의 요소들에 가려지지 않기위해*/
+#boxMatchBody .round_match.on .match_schedule{
+	z-index: 2;
+}
+
+#boxMatchBody .match_schedule_detail{
+	display:none;
+	position:absolute;
+	left:0;
+	top:25px;
+
+	width:150px;
+	padding:10px;
+
+	color:white;
+
+	background-color:black;
+}
+
+#boxMatchChart .match_start_date_wrapper>div{
+	float:left;
+}
+
+#boxMatchChart .tui-timepicker-btn-area{
+	height:60px;
+}
+
+#boxMatchChart .tui-timepicker-spinbox{
+	width:30px;
+}
+#boxMatchChart .tui-timepicker{
+	padding:0;
+}
+
+#boxMatchChart .tui-datepicker-input{
+	width:auto;
+}
+
+#receptionDeadlineBox>div{
+	float:left;
+}
+
+
+/*이미 되어있는 것*/
+#boxMatchChart .btn{
+
+	width:75px;
+	height:25px;
+	border:none;
+
+	background-color:white;
+
+}
+
+#boxMatchChart .match_schedule_detail>div{
+	margin-bottom:10px;
+}
+
+#boxMatchChart .btn.editable{
+	display:inline-block;
+}
+
+#boxMatchBody .round_match.on .match_schedule_detail.on{
+	display: block;
+}
+
+#boxMatchBody .round_match.on{
+	z-index: 2;
+}
+/*해당 match_box 내의 요소들에 가려지지 않기위해*/
+#boxMatchBody .round_match.on  .match_box .red_corner.on  {
+	z-index: 2;
+}
+
+
+#boxMatchBody .match_box .player_detail{
+	position:absolute;
+	left:0;
+	top:25px;
+	z-index:2;
+	display:none;
+
+
+	width:450px;
+	height:auto;
+
+}
+#boxMatchChart.view #boxMatchBody .match_box .player_detail,
+#boxMatchBody .round_match.E .player_detail{
+	width:300px;
+}
+#boxMatchBody .team>.player_detail table *{
+	border:1px;
+
+}
+#boxMatchBody .team>.player_detail input{
+	width:25px;
+}
+#boxMatchBody .player_detail.on{
+	display:block;
+}
+
+#boxMatchBody .score .score_detail{
+	display:none;
+	position:absolute;
+	left:0;
+	top:25px;
+
+	width:200px;
+	height:300px;
+
+	background-color:purple;
+}
+#boxMatchBody .score .score_detail.on{
+	display:block;
+}
+
+
+/*player_detail 에 출력할 record 테이블 관련 css*/
+ #boxMatchChart .record {
+        width: 300px;
+        padding-bottom:10px;
+
+        color: #424242;
+
+        background-color: #E4E4E4;
+        box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.4);
+        
+    }
+
+    #boxMatchChart .move_game_record {
+    	position:relative;
+
+        height:30px;
+    	padding:10px 0px;
+        margin-bottom:10px;
+
+        text-align: center;
+
+    	background-color: #aaaaaa;
+        box-shadow: 1px 2px 5px rgba(0,0,0,0.3);
+    }
+    #boxMatchChart .move_game_record .circle_btn{
+    	position:absolute;
+
+    	width:30px;
+    	height:30px;
+
+    	border:none;
+    	border-radius: 15px;
+    	background-color:transparent;
+    	box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    	
+    	transition:0.3s ease;
+    }
+    #boxMatchChart .move_game_record .circle_btn:hover{
+    	transform: translate(-1px,-1px);
+    }
+    #boxMatchChart .move_game_record .circle_btn:active{
+    	transform: translate(0px,0px);
+    }
+    #boxMatchChart .move_game_record .left_arrow{
+    	left:20px;
+        cursor:pointer;
+    }
+    #boxMatchChart .move_game_record .right_arrow{
+		right:20px;
+        cursor:pointer;
+    }
+
+    #boxMatchChart .record_table{
+        width:250px;
+        /*record_type_divider.boxwidth+cell.boxwidth*3*/
+        margin:auto;
+        border:1px solid white;
+    }
+
+    #boxMatchChart .team_record_bottom{
+        height:210px;/*cell.boxheight * 6*/
+    }
+    #boxMatchChart .solo_record_bottom{
+        height:35px;/*cell.boxheight */
+    }
+
+    #boxMatchChart .record_top_header>div,
+    #boxMatchChart .team_record_bottom>div,
+    #boxMatchChart .solo_record_bottom>div,
+    #boxMatchChart .record_row>div{
+        float:left;
+    }
+
+    #boxMatchChart .record_body{
+        display:none;
+    }
+
+    #boxMatchChart .record_body.selected{
+        display:block;
+    }
+
+    #boxMatchChart .record_row{
+        height:35px;
+    }
+
+    #boxMatchChart .cell{
+        width:48px;
+        height:33px;
+
+        border:1px solid white;
+
+        line-height: 33px;
+    }
+    #boxMatchChart .record_top_header>.cell{
+        background-color:rgba(255,0,0,0.3);
+    }
+    #boxMatchChart .record_bottom_header>.cell{
+        background-color:rgba(0,0,255,0.3);
+    }
+    #boxMatchChart .record_type_divider.cell{
+        line-height:100%;
+        background-color:transparent;
+    }
+    #boxMatchChart .record_type_divider{
+        position:relative;
+
+        font-size:10px;
+    }
+    #boxMatchChart .record_type_divider::before{
+        /* header 타입구분선 */
+        position:absolute;
+        display:block;
+        left:0;
+        top:0;
+
+        border:49px solid transparent;
+        border-top:16px solid rgba(255,0,0,0.3); /*배율 조정하면 깨짐:100%에서 안깨지려면 정수로끝내야해서 좀 작게함*/
+        border-bottom:16px solid transparent;
+        border-right:49px solid rgba(255,0,0,0.3);
+
+        content:"";
+    }
+    #boxMatchChart .record_type_divider::after{
+        /*header 타입 구분선*/
+        position:absolute;
+        display:block;
+        left:0;
+        top:0;
+
+        border:49px solid transparent;
+        border-top:16px solid transparent; /*배율 조정하면 깨짐:100%에서 안깨지려면 정수로끝내야해서 좀 작게함*/
+        border-bottom:16px solid rgba(0,0,255,0.3);
+        border-left:49px solid rgba(0,0,255,0.3);
+
+        content:"";
+    }
+    #boxMatchChart .record_type_divider .top_header_type{   
+        position:absolute;
+        right:4px;
+        top:4px;
+    }
+    #boxMatchChart .record_type_divider .bottom_header_type{
+        position:absolute;
+        left:4px;
+        bottom:4px;
+    }
+    #boxMatchChart .record_type_divider,#boxMatchChart .record_bottom_header .cell{
+        width:98px;
+    }
+
+    #boxMatchChart .header .cell,#boxMatchChart .record_row.tot .cell{
+        font-weight:900;
+    }
+    #boxMatchChart .member_head>span{
+        color:blue;
+
+        cursor:pointer;
+
+    }
+
+    /*플레이중인 경기에 강조*/
+    #boxMatchChart .round_match.P{
+        background-color:rgba(255,255,0,0.3);
+    }
+    
+    #boxMatchChart .round_match.E .manage_team_game,
+    #boxMatchChart .round_match.B .manage_team_game{
+        display:none;
+    }
+    #boxMatchChart .announce{
+    	position:relative;
+    	
+        height:100px;
+        line-height:50px;
+
+        font-size:18px;
+        font-weight:700;
+
+        background-color:#E4E4E4;
+        box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+
+    }
+    #boxMatchChart .announce i{
+    	position:absolute;
+    	left:5px;
+    	top:5px;
+    }
+    #boxMatchChart .announce .dio{
+    	transform:rotate(45deg)
+    }
+    
+
+    #boxMatchChart .manage_team_game{
+        position:absolute;
+        right:-20px;
+        top:5px;
+        z-index: -1;
+
+        width:150px;
+
+        text-align:center;
+
+        background-color:white;
+    }
+#boxMatchChart .manage_team_game::before{
+    content:"";
+    position:absolute;
+    left:-25px;
+    top:7.5px;
+    display:block;
+    
+    border:10px solid transparent;
+    border-right:15px solid white;
+}
+#boxMatchChart .manage_team_game li{
+        display:none;
+    }
+
+    #boxMatchChart .manage_team_game .btn{
+        width:100%;
+        height:35px;
+        
+
+        font-size:15px;
+        cursor:pointer;
+        
+        transition: 0.2s ease;
+        
+    }
+    #boxMatchChart .manage_team_game .btn:hover{
+            background-color: #424242;
+            color:white;
+
+        }
+
+    #boxMatchChart .match_status_message{
+    	position:relative;
+        width:300px;
+        height:307px;
+        
+        line-height:150px;
+        
+        font-size:25px;
+        background-color:#E4E4E4;
+    }
+    #boxMatchChart .match_status_message i{
+    	position:absolute;
+    	right:5px;
+    	top:20px;
+    }
+    
+
+    /*경기 시작상태일때*/
+    #boxMatchChart .manage_team_game.MS .next_game{
+        display:block;
+    }
+
+    #boxMatchChart .manage_team_game.WS .start_game,
+    #boxMatchChart .manage_team_game.WS .cancel_game
+    {
+        display:block;
+    }
+
+    #boxMatchChart .manage_team_game.PG .end_game,
+    #boxMatchChart .manage_team_game.PG .save_score{
+        display:block;
+    }
+
+    #boxMatchChart .manage_team_game.NE .next_game{
+        display:block;
+    }
+    #boxMatchChart .manage_team_game.CE .next_game,
+    #boxMatchChart .manage_team_game.CE .end_match{
+        display:block;
+    }
+
+
+
+

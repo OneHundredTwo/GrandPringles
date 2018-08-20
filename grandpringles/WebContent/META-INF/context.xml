@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	
+	<Resource 
+	name="oraclexe"
+	auth="Container"
+	driverClassName="oracle.jdbc.OracleDriver"
+	username="grandpringles"
+	password="1111"
+	url="jdbc:oracle:thin:@localhost:1521:xe"
+	type="javax.sql.DataSource"
+	maxIdle="20"
+	maxActive="20"
+	maxWait="-1"
+	/>
+	<!-- 
+	커넥션풀 설정
+	maxIdle : 기본 커넥션 갯수
+	maxActive : 활성화 커넥션 갯수
+	maxWait : 기다리는 시간
+	 -->
+
+</Context>

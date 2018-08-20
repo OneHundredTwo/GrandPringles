@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pa"><!-- 너무길어서.. pa로 바꿈 -->
+<!-- 각 mapper 파일을 구별해야 되기 대문에 namespace가 필요함(테이블명) -->
+	<select id="selectList" parameterType = "Participation" resultType="ParticipantApplication">
+		SELECT
+		    USER_NO     USERNO
+		,   GRND_NO     GRNDNO
+		,   NUM
+		,   GRND_NUM    GRNDNUM
+		,   IMAGE
+		,   CONTENT
+		,   REGDATE
+		FROM
+		    PARTICIPANT_APPLICATIONS
+		WHERE
+		    USER_NO     =   #{userNo}
+		AND GRND_NO     =   #{grndNo}
+		AND GRND_NUM    =   #{grndNum}
+		ORDER BY    3
+	</select>
+
+</mapper>

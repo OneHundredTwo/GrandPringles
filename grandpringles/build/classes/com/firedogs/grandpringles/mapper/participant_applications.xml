@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="participant_applications">
+<!-- 각 mapper 파일을 구별해야 되기 대문에 namespace가 필요함(테이블명) -->
+
+<insert id="insert" parameterType="ParticipantApplication">
+
+insert into participant_applications(user_no,grnd_no,num,grnd_num,image,content,regdate)
+values(#{userNo},#{grndNo},#{num},#{grndNum},#{image},#{content},systimestamp)
+</insert>
+
+<delete id="delete" parameterType="ParticipantApplication">
+delete participant_applications
+where grnd_no=#{grndNo} and user_no=#{userNo} and grnd_num=#{grndNum}
+</delete>
+
+	<select id="selectList" parameterType = "Participation" resultType="ParticipantApplication">
+		SELECT
+		    USER_NO     USERNO
+		,   GRND_NO     GRNDNO
+		,   NUM
+		,   GRND_NUM    GRNDNUM
+		,   IMAGE
+		,   CONTENT
+		,   REGDATE
+		FROM
+		    PARTICIPANT_APPLICATIONS
+		WHERE
+		    USER_NO     =   #{userNo}
+		AND GRND_NO     =   #{grndNo}
+		AND GRND_NUM    =   #{grndNum}
+		ORDER BY    3
+	</select>
+
+</mapper>

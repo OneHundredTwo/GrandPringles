@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="prixes">
+<!-- 각 mapper 파일을 구별해야 되기 대문에 namespace가 필요함(테이블명) -->
+
+<select id="selectPrixes" parameterType="int" resultType="Prix">
+		select no ,grnd_no grndNo, grnd_num grndNum, to_user toUser, content, url , image, regdate
+		from prixes
+		where grnd_no = #{grndNo}
+	</select>
+	
+
+	<insert id="insert" parameterType="Prix">
+		insert into prixes(no,grnd_no,grnd_num, to_user, content,url,image,regdate)
+		values(prixes_seq.nextval,#{grndNo} ,#{grndNum},#{toUser},#{content},#{url},#{image},systimestamp)
+	</insert>
+
+
+</mapper>

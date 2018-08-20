@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+		<!-- 무조건 씁니다. -->
+		<mvc:annotation-driven/>
+		
+		<!-- Controller가 필요없기 그냥 JSP뷰 를 이용 -->
+		  <mvc:view-controller path="/mail.grnd"/>
+		
+		
+		<mvc:view-resolvers>
+			<mvc:jsp prefix="/WEB-INF/view/" suffix=".jsp"/>
+		</mvc:view-resolvers>
+		
+		
+
+<!-- MultipartResovler -->
+<bean id="multipartResolver"
+p:defaultEncoding="UTF-8"
+p:maxUploadSize="104857600"
+class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+<mvc:resources location="/css/" mapping="/css/**"/>
+<mvc:resources location="/img/" mapping="/img/**"/>
+<mvc:resources location="/js/" mapping="/js/**"/>
+<mvc:resources location="/fonts/" mapping="/fonts/**"/>
+
+
+
+	<bean
+		p:grandprixesService-ref="grandprixesService"
+		p:grandprixNamesService-ref="grandprixNamesService"
+	 	class= "com.firedogs.grandpringles.controller.GrandprixesController"/>
+	 
+	 <bean
+		p:usersSerivce-ref="usersSerivce"	
+		class= "com.firedogs.grandpringles.controller.UserController"/>
+	 
+	 	 <bean
+		p:grandprixNamesService-ref="grandprixNamesService"
+		class= "com.firedogs.grandpringles.controller.GrandprixNamesController"/>
+
+<bean class="com.firedogs.grandpringles.controller.MailController"
+p:mailService-ref="mailService"
+p:authenticationsService-ref="authenticationsService"
+/>
+
+
+
+
+
+
+
+</beans>

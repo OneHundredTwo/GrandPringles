@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="grandprix_names">
+<!-- 각 mapper 파일을 구별해야 되기 대문에 namespace가 필요함(테이블명) -->
+
+<select id="selectName" resultType="GrandprixName" parameterType="int">
+		select no , owner_no ownerNo, title, liking, regDate
+		from grandprix_names
+		where no=#{no}
+	</select>
+	
+	<insert id="insert" parameterType="GrandprixName">
+		insert into grandprix_names(no , owner_no , title, liking, regDate)
+		values(grandprix_names_seq.nextVal,#{ownerNo},#{title},#{liking},systimestamp)	
+		
+	</insert>
+<select id="selectMax" resultType="int">
+		select MAX(no) no 
+		from grandprix_names
+	</select>
+	
+	<update id="updateTitle" parameterType="GrandprixName">
+		update grandprix_names
+		set title = #{title}
+		where no =#{no}
+	</update>
+</mapper>

@@ -1,0 +1,67 @@
+/* < 전체 공통 CSS 적용 > */
+
+/* 1번 큰 버튼 */
+/*
+    확인, 취소와 같은 중요 버튼
+*/
+.btn_big_button {
+    width:120px;                                /* 너비 */
+    height:40px;                                /* 높이 */
+    line-height: 34px;                          /* 글자의 수직 정렬 */
+    text-align: center;                         /* 글자의 수평 정렬 */
+    border:3px solid #fff;                      /* 보더 */
+    font-weight: 600;                           /* 글자 굵기 */
+    font-size:20px;                             /* 글자 크기 */
+    color:#616161;                              /* 글자색 */
+    background-color:#FAFAFA;                   /* 배경색 */
+    cursor:pointer;                             /* 커서 모양 */
+}
+
+/* 2번 큰 버튼:hover */
+.btn_big_button:hover {
+    background-color:#EEEEEE;
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    transition: 0.3s ease;
+    transform: translate(-3px,-3px);
+}
+
+
+/* 3번 큰 버튼:Actice */
+.btn_big_button:active {
+    color:black;
+    background-color:#E0E0E0;
+    transform: translate(0,0);
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.24);
+    transition: 0.3s ease;
+}
+
+
+/* 4번 중간 크기 버튼 */
+/*
+    요소안에 있는 중요 버튼
+*/
+.btn_middle_button {
+    width:80px;                                /* 너비 */
+    height:30px;                                /* 높이 */
+    line-height: 24px;                          /* 글자의 수직 정렬 */
+    text-align: center;                         /* 글자의 수평 정렬 */
+    border:3px solid #fff;                      /* 보더 */
+    font-weight: 600;                           /* 글자 굵기 */
+    font-size:17px;                             /* 글자 크기 */
+    color:#616161;                              /* 글자색 */
+    background-color:#FAFAFA;                   /* 배경색 */
+    cursor:pointer;                             /* 커서 모양 */
+}
+
+/* 6번 중간 크기 버튼:hover */
+.btn_middle_button:hover {
+    color:#424242;
+    background-color:#F5F5F5;
+}
+
+/* 7번 중간 크기 버튼:actice */
+.btn_middle_button:hover {
+    color:black;
+    background-color:#EEEEEE;
+}
+

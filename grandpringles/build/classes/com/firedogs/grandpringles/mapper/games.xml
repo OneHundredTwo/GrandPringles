@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="games">
+<!-- 각 mapper 파일을 구별해야 되기 대문에 namespace가 필요함(테이블명) -->
+	<select id="selectMatchInfo" parameterType="Match" resultType='map'>
+		SELECT 
+		(
+		SELECT COUNT(winner_no)
+		FROM games
+		WHERE match_no=#{no} AND winner_no = #{red}
+		) red_score,
+		(
+		SELECT COUNT(winner_no)
+		FROM games
+		WHERE match_no=#{no} AND winner_no = #{blue}
+		) blue_score, 
+		(
+			SELECT nickname
+			FROM users
+			WHERE no=#{red}
+		) red,
+		(
+			SELECT nickname
+			FROM users
+			WHERE no = #{blue}
+		) blue
+FROM dual
+	</select>
+	<!-- 
+	MATCH_NO
+	SEQ
+	WINNER_NO
+	REGDATE
+	 -->
+	<insert id="insert" parameterType="Match">
+		INSERT INTO games(match_no, seq, winner_no, regdate)
+		VALUES(
+			#{no},
+			(select count(*) from games where match_no=#{no})+1,
+			null,
+			systimestamp
+		)
+		
+	</insert>
+<!-- 
+MATCH_NO
+SEQ
+WINNER_NO
+REGDATE
+ -->
+	<select id="selectLatestMatchsGame" parameterType="int" resultType="Game">
+		SELECT match_no matchNo, seq, winner_no winnerNo, regdate
+		FROM games
+		WHERE match_no=#{no} AND seq = (SELECT max(seq) FROM games WHERE match_no=#{no})
+	</select>
+	
+	<delete id="delete" parameterType="Game">
+		DELETE games
+		WHERE match_no=#{matchNo} AND seq=#{seq}
+	</delete>
+	
+	
+	<update id="updateWinner" parameterType="Game">
+		UPDATE games
+		SET winner_no = #{winnerNo}
+		WHERE match_no=#{matchNo} AND seq=#{seq}
+	</update>
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="team_members">
+<!-- 각 mapper 파일을 구별해야 되기 대문에 namespace가 필요함(테이블명) -->
+
+
+<select id="selectTeamMemberList" parameterType="TeamMember" resultType="TeamMember">
+select t.grnd_no grndNo,t.grnd_num grndNum,leader_no leaderNo,member_no memberNo,nickname
+from team_members t,users u
+where grnd_no=#{grndNo} and grnd_num =#{grndNum} and leader_no=#{leaderNo}
+and t.member_no=u.no
+
+</select>
+
+<select id="MemberCount" parameterType="TeamMember"  resultType="int">
+select count(*)
+from team_members t,users u
+where grnd_no=#{grndNo} and grnd_num =#{grndNum} and leader_no=#{leaderNo}
+and t.member_no=u.no
+</select>
+
+<insert id="insert" parameterType="TeamMember">
+insert into team_members(grnd_no,grnd_num,leader_no,member_no,regdate)
+values(#{grndNo},#{grndNum},#{leaderNo},#{memberNo},systimestamp)
+
+</insert>
+
+
+<select id="memberTF" parameterType="TeamMember" resultType="int">
+select member_no memberNo
+from team_members
+where grnd_no=#{grndNo} and grnd_num =#{grndNum} and member_no=#{memberNo} and  leader_no=#{leaderNo}
+</select>
+
+
+<delete id="deleteMember" parameterType="TeamMember" >
+delete team_members
+where grnd_no=#{grndNo} and grnd_num =#{grndNum} and member_no=#{memberNo} and  leader_no=#{leaderNo}
+</delete>
+
+<delete id="deleteTeam" parameterType="TeamMember" >
+delete team_members
+where grnd_no=#{grndNo} and grnd_num=#{grndNum} and leader_no=#{leaderNo}
+</delete>
+</mapper>

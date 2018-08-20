@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="comments">
+<!-- 각 mapper 파일을 구별해야 되기 대문에 namespace가 필요함(테이블명) -->
+<select id="selectList" resultType="Comment" parameterType="map">
+		Select c.no, u.profile, u.nickname, c.user_no userNo, c.board_no boardNo,
+		c.content, c.liking, c.regdate
+		From users u, comments c
+		Where c.board_no = #{boardNo}
+		AND u.no = c.user_no
+		ORDER BY
+ 	    <if test="order=='new'"> 
+	    8 DESC
+	    </if>
+	    <if test="order=='hot'">
+	    7 DESC
+		</if> 
+		
+	</select>
+
+	<select id="selectCount" resultType="int" parameterType="int">
+		Select count(*)
+		From comments
+		WHERE board_no = #{boardNo}
+	</select>
+
+	<insert id="insertComment" parameterType="Comment">
+		INSERT INTO comments (no, user_no, board_no, content, liking, regdate)
+		VALUES (comments_seq.nextval, #{userNo}, #{boardNo}, #{content}, 0,
+		systimestamp)
+	</insert>
+
+	<update id="plusLike" parameterType="int">
+		UPDATE comments
+		SET liking = liking + 1
+		WHERE no = #{no}
+	</update>
+	
+	<update id="minusLike" parameterType="int">
+		UPDATE comments
+		SET liking = liking - 1
+		WHERE no = #{no}
+	</update>
+
+	<select id="getCommentLike" resultType="int" parameterType="int">
+		SELECT liking
+		FROM comments
+		WHERE no = #{no}
+	</select>
+	
+	<delete id="deleteComments" parameterType="int">
+		delete comments
+		WHERE board_no = #{boardNo}	
+	</delete>
+
+
+</mapper>

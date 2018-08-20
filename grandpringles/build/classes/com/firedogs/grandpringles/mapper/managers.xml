@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="managers">
+<!-- 각 mapper 파일을 구별해야 되기 대문에 namespace가 필요함(테이블명) -->
+
+	<insert id="insert" parameterType="Manager">
+		insert into managers(grnd_no,grnd_num,admin_no,regdate)
+		values(#{grndNo},#{grndNum},#{adminNo},systimestamp)
+	</insert>
+	<!-- 
+	GRND_NO
+GRND_NUM
+ADMIN_NO
+REGDATE
+	
+	 -->
+	<select id="selectList" parameterType="Grandprix" resultType="Manager">
+		SELECT grnd_no grndNo, grnd_num grndNum, admin_no adminNo, regdate
+		FROM Managers
+		WHERE grnd_no = #{grndNo} AND grnd_num = #{num}
+	</select>
+
+
+
+</mapper>

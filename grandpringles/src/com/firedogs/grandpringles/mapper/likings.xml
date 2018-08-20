@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="likings">
+<!-- 각 mapper 파일을 구별해야 되기 대문에 namespace가 필요함(테이블명) -->
+
+
+<insert id="insert" parameterType="Liking">
+	INSERT INTO likings (no, user_no, type, content_id, regdate)
+	VALUES (likings_seq.nextval, #{userNo}, #{type}, #{contentId}, systimestamp)
+</insert>
+
+<select id="confileLiking" parameterType="Liking" resultType="int">
+	SELECT count(*)
+	FROM likings
+	WHERE content_id = #{contentId}
+	AND user_no = #{userNo}
+</select>
+
+<delete id="cancelLiking" parameterType="Liking">
+	DELETE likings
+	WHERE content_id = #{contentId}
+	AND user_no = #{userNo}
+</delete>
+
+<delete id="deleteCommentLike" parameterType="int">
+	DELETE from likings
+	WHERE type='C'
+	AND
+	content_id in(
+	SELECT no from comments
+	where board_no = #{boardNo})
+</delete>
+
+<delete id="deleteBoardLike" parameterType="int">
+	DELETE likings
+	WHERE TYPE = 'B'
+	AND content_id = #{contentID}
+</delete>
+
+</mapper>

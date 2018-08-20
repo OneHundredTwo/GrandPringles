@@ -1,0 +1,41 @@
+/* 대회정보 탭 (템플릿화) */
+#competitionInfoTapboard {
+    width: 1160px;
+    height: 60px;
+    position: relative;
+    top: 20px;
+    left: 20px;
+}
+/* 대회정보 탭 게시물 각 탭 속성 */
+#competitionInfoTapboard .participant_board{
+    position: absolute;
+    width: 287px;
+    height: 60px;
+    font-size: 25px;
+    line-height: 60px;
+    text-align: center;
+    border-right: 4px solid #212121;
+    color: #424242;
+    display: inline-block;
+    background:#c6c6c6;
+}
+/*<!--대회정보 탭 : 인기 잡담 미디어 배팅 토론 -->*/
+/* 게시물 각 탭 속성 */
+#competitionInfoTapboard>#participantTab{
+    left: 0px;
+}
+#competitionInfoTapboard>#winnerTab{
+    left: 291px;
+}
+#competitionInfoTapboard>#matchesTab{
+    right: 287px;
+}
+#competitionInfoTapboard>#interviewTab{
+    border: none;
+    right: 0px;
+}
+
+#competitionInfoTapboard .participant_board.on{
+    background: #FFF176;
+    color: black;
+}

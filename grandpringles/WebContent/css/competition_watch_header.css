@@ -1,0 +1,190 @@
+
+
+/* 대회 헤더 #competitionHeader */
+#competitionHeader {
+    width: 1200px;
+    height: 100px;
+    position: relative;
+    margin: auto;
+}
+/* 대회 헤더 자식 div의 공통 요소*/
+#competitionHeader>div {
+    position: absolute;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+}
+/* 대회 헤더 왼쪽 대회 이미지 */
+#competitionHeader>.competition_img {
+	position:absolute;
+    width: 180px;
+    height:100px;
+    left: 0px;
+    top: 0px;
+
+	background-size:cover;
+    
+}
+
+#competitionHeader>.competition_img .competition_logo_img{
+    width: 180px;
+	height:100px;
+	
+}
+/* 대회 헤더 가운데 대회 이름 */
+#competitionHeader>.competition_title {
+    width: 720px;
+    background: #212121;
+    left: 180px;
+    font-weight: 600;
+    color: #FFF176;
+    font-size: 40px;
+}
+/* 대회 헤더 오른쪽 대회 상세 버튼 */
+#competitionHeader>#competitionSideBtn {
+    width: 300px;
+    left: 900px;
+    position: relative;
+}
+/* 상세 버튼을 담는 Box */
+#competitionSideBtn>.btn_Side_Box {
+    width: 148px;
+    position: absolute;
+    background: transparent;
+    font-size: 15px;
+    text-align: left;
+}
+/* 버튼 안의 폰트어썸 요소 */
+#competitionSideBtn>.btn_Side_Box>i {
+    position: absolute;
+    left: 10px;
+    top: 7px;
+}
+/* 버튼 안의 폰트어썸 요소 */
+#competitionSideBtn>.btn_Side_Box>a {
+    position: absolute;
+    right: 10px;
+    top: 0px;
+}
+/* a요소가 가진 기본 CSS 제거 */
+#competitionSideBtn a{
+    text-decoration: none;
+    color:#fff176;
+}
+/* 즐겨 찾기, 추천 수, 다음대회만들기 공통 CSS */
+#competitionSideBtn #bookmarkBox,  #competitionSideBtn #goodBox, #competitionSideBtn #nextCompetitionBox {
+    height: 32px;
+    line-height: 32px;
+    left: 0px;
+    background: #323232;
+    border-left: 1px solid #424242;
+    border-right: 1px solid #424242;
+}
+/* 즐겨찾기 */
+#competitionSideBtn #bookmarkBox {
+    top: 0px;
+    border-bottom: 1px solid #424242;
+}
+/* 추천 수 */
+#competitionSideBtn #goodBox{
+    top: 33px;
+    border-bottom: 1px solid #424242;
+}
+/* 다음대회만들기 */
+#competitionSideBtn #nextCompetitionBox {
+    height: 34px;
+    line-height: 34px;
+    left: 0px;
+    top: 66px;
+}
+/* 추천수 폰트어썸 */
+#competitionSideBtn #goodBox>i {
+    top: 7px;
+}
+#competitionSideBtn #competitionParticipationBox, #competitionSideBtn #openerData {
+    right: 0px;
+    background: #323232;
+    border-left: 1px solid #424242;
+    border-right: 1px solid #424242;
+}
+/* 대회 현재 상태 */
+#competitionSideBtn #competitionParticipationBox {
+    height: 66px;
+    line-height: 66px;
+    top: 0px;
+    position: absolute;
+}
+/* 대회 현재 상태 label의 공통 속성 */
+#competitionParticipationBox>#competitionTypeBox, #competitionParticipationBox>#competitionPeopleSlash {
+    position: absolute;
+    width: 148px;
+    height: 33px;
+    line-height: 33px;
+    text-align: center;
+    color: #fafafa;
+    font-size: 20px;
+}
+/* 대회 참가 label */
+#competitionSideBtn #competitionParticipationBox>#competitionTypeBox {
+    top: 3px;
+    font-weight: 600;
+}
+/* 대회 참가 인원 숫자 label */
+#competitionSideBtn #competitionParticipationBox>#competitionPeopleSlash {
+    top: 30px;
+    color: #FFF176;
+}
+/* 개최자정보 */
+#competitionSideBtn #openerData {
+    border-top: 1px solid #424242;
+    height: 33px;
+    line-height: 33px;
+    top: 66px;
+}
+
+
+/* 대회 세부 헤더 (관람, 대회정보, 커뮤니티, 참가자모집) #competitionTapboard */
+#competitionTapboard {
+    width: 1200px;
+    height: 80px;
+    margin: auto;
+    position: relative;
+    top: 10px;
+    background: #fafafa;
+    color: #424242;
+}
+#competitionTapboard .board_css {
+    font-size: 35px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    width: 400px;
+    cursor: pointer;
+    position: relative;
+    color: #424242;
+    display:inline-block;
+    text-decoration: none;
+}
+
+#competitionTapboard>#previewTab {
+    left: 0px;
+}
+#competitionTapboard .on {
+    color: #FFF176;
+    background: #212121;
+}
+#competitionTapboard>#informationTab {
+    left: 0px;
+}
+#competitionTapboard>#communityTab {
+    left: 800px;
+    top: -80px;
+}
+
+
+/* 기본적인 폰트 어썸 속성*/
+        #competitionHeader .fas, .far {
+            font-size: 17px;
+            color: #FFF176;
+            margin : 0px;
+        }

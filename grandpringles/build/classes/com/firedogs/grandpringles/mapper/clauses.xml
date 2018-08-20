@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="clauses">
+<!-- 각 mapper 파일을 구별해야 되기 대문에 namespace가 필요함(테이블명) -->
+
+
+<insert id="insert" parameterType="Clause">
+	INSERT INTO clauses(grnd_no,grnd_num,num,title,content,is_necessary,regdate)
+	VALUES(#{grndNo},#{grndNum},#{num},#{title},#{content},#{isNecessary},systimestamp)
+	
+</insert>
+
+
+</mapper>

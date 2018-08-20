@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="grandprixes">
+<!-- 각 mapper 파일을 구별해야 되기 대문에 namespace가 필요함(테이블명) -->
+	<select id="selectPtAndNOP" parameterType="Grandprix" resultType="Grandprix">
+		/*gnrd_no, grnd_num으로 대회 참가유형, 참가인원 받아오기*/
+		SELECT grnd_no grndNo, num, part_type partType,number_of_participant numberOfParticipant 
+		FROM grandprixes
+		WHERE grnd_no=#{grndNo} AND num=#{num}
+	</select>
+
+	<select id="selectGrandprixesNo" resultType="Grandprix" parameterType="int">
+	
+	select grnd_no grndNo,num ,owner_no ownerNo,participant_announce participantAnnounce,part_type partType,is_show_participant isShowParticipant,
+	is_wanted_participant isWantedParticiapnt,is_application isApplication,start_date startDate,end_date endDate,end_date_application endDateApplication,
+	channel_id channelId,intro ,rule ,is_show isShow,
+	image ,members_per_team membersPerTeam,max_participant maxParticipant,wait_participant waitParticipant,type ,number_of_participant numberOfParticipant,
+	seeding_type seedingType,
+	status ,winner ,regdate
+	from grandprixes
+	where grnd_no =#{grndNo}
+	</select>
+	
+		<select id="selectGrandprixesNoM" resultType="Grandprix" parameterType="int">
+	
+	select grnd_no grndNo,num ,owner_no ownerNo,participant_announce participantAnnounce,part_type partType,is_show_participant isShowParticipant,
+	is_wanted_participant isWantedParticiapnt,is_application isApplication,start_date startDate,end_date endDate,end_date_application endDateApplication,
+	channel_id channelId,intro ,rule ,is_show isShow,
+	image ,members_per_team membersPerTeam,max_participant maxParticipant,wait_participant waitParticipant,type ,number_of_participant numberOfParticipant,
+	seeding_type seedingType,
+	status ,winner ,regdate
+	from grandprixes
+	where grnd_no =#{grndNo}
+	</select>
+	
+	
+	
+	
+		<select id="selectGrandprixesList" resultType="Grandprix">
+	
+			select grnd_no grndNo,num ,owner_no ownerNo,participant_announce participantAnnounce,part_type partType,is_show_participant isShowParticipant,
+			is_wanted_participant isWantedParticiapnt,is_application isApplication,start_date startDate,end_date endDate,end_date_application endDateApplication,
+			channel_id channelId,intro ,rule ,is_show isShow,
+			image ,members_per_team membersPerTeam,max_participant maxParticipant,wait_participant waitParticipant,type ,number_of_participant numberOfParticipant,
+			seeding_type seedingType,
+			status ,winner ,regdate
+			from grandprixes
+		</select>
+
+<select id="selectAnnounceList" resultType="Grandprix" parameterType="Grandprix">
+
+select grnd_no grndNo,num ,owner_no ownerNo,participant_announce participantAnnounce,part_type partType,is_show_participant isShowParticipant,
+	is_wanted_participant isWantedParticiapnt,is_application isApplication,start_date startDate,end_date endDate,end_date_application endDateApplication,
+	channel_id channelId,intro ,rule ,is_show isShow,
+	image ,members_per_team membersPerTeam,max_participant maxParticipant,wait_participant waitParticipant,type ,number_of_participant numberOfParticipant,
+	seeding_type seedingType,
+	status ,winner ,regdate
+	from grandprixes
+WHERE grnd_no = #{grndNo} AND num = #{num}
+
+
+</select>
+
+<select id="selectPastList" resultType="Grandprix" parameterType="int">
+			
+			select grnd_no grndNo,num ,owner_no ownerNo,participant_announce participantAnnounce,part_type partType,is_show_participant isShowParticipant,
+				is_wanted_participant isWantedParticiapnt,is_application isApplication,start_date startDate,end_date endDate,end_date_application endDateApplication,
+				channel_id channelId,intro ,rule ,is_show isShow,
+				image ,members_per_team membersPerTeam,max_participant maxParticipant,wait_participant waitParticipant,type ,number_of_participant numberOfParticipant,
+				seeding_type seedingType,
+				status ,winner ,regdate
+				from grandprixes
+			WHERE grnd_no = #{grndNo}
+			
+			
+			</select>
+			
+			<insert id="insert" parameterType="Grandprix" >
+			insert into grandprixes(grnd_no,num,owner_no,regdate)
+			values(#{grndNo},#{num},#{ownerNo},systimestamp)
+			</insert>
+			
+			
+
+			
+			<update id="updateNecessary" parameterType="Grandprix">
+					update grandprixes
+					set is_show = #{isShow} , image =#{image} ,part_type=#{partType}, members_per_team=#{membersPerTeam},max_participant=#{maxParticipant}
+					, wait_participant=#{waitParticipant},channel_id = #{channelId}
+					where grnd_no = #{grndNo} and num = #{num}
+			</update>
+			
+			<update id="updateParticipant" parameterType="Grandprix">
+					update grandprixes
+					set is_show_participant = #{isShowParticipant} , is_wanted_participant =#{isWantedParticipant} ,is_application=#{isApplication},
+					 participant_announce=#{participantAnnounce},start_date=#{startDate},end_date=#{endDate},end_date_application=#{endDateApplication}
+					where grnd_no = #{grndNo} and num = #{num}
+			</update>
+			
+			<update id="updateMethod" parameterType="Grandprix">
+					update grandprixes
+					set type = #{type} , seeding_type =#{seedingType} 
+					where grnd_no = #{grndNo} and num = #{num}
+			</update>
+			
+			<update id="updateComplete" parameterType="Grandprix">
+					update grandprixes
+					set intro = #{intro} , status ='W'  ,rule=#{rule}
+					where grnd_no = #{grndNo} and num = #{num}
+			</update>
+			
+			<!-- 대회참가 참가인원 업데이트 -->
+			<update id="updateNumberOfParticipant" parameterType="Grandprix">
+					update grandprixes
+					set number_of_participant = #{numberOfParticipant}
+					where grnd_no = #{grndNo} and num = #{num}
+			</update>
+			<update id="updatePresentParts" parameterType="Grandprix">
+				UPDATE grandprixes
+				SET number_of_participant = (SELECT count(*) FROM PARTICIPATIONS WHERE grnd_no = #{grndNo} AND grnd_num = #{num} AND status='C')
+				WHERE grnd_no = #{grndNo} AND num = #{num}
+			</update>
+			<!-- 대회참가 참가인원 카운트 -->
+			<select id="selectNumberOfParticipant" parameterType="Grandprix" resultType="int">
+				select number_of_participant numberOfParticipant
+				from grandprixes
+				where grnd_no = #{grndNo} and num = #{num}
+			</select>
+			
+			
+<!-- 기원이꺼 -->
+
+	<select id="selectOne" parameterType="Grandprix"
+		resultType="Grandprix">
+		SELECT 
+			GRND_NO                 GRNDNO
+			,   NUM
+			,   OWNER_NO                OWNERNO
+			,   PARTICIPANT_ANNOUNCE    PARTICIPANTANNOUNCE
+			,   PART_TYPE               PARTTYPE
+			,   IS_SHOW_PARTICIPANT     ISSHOWPARTICIPANT
+			,   IS_WANTED_PARTICIPANT   ISWANTEDPARTICIAPNT
+			,   IS_APPLICATION          ISAPPLICATION
+			,   START_DATE              STARTDATE
+			,   END_DATE                ENDDATE
+			,   END_DATE_APPLICATION    ENDDATEAPPLICATION
+			,   CHANNEL_ID              CHANNELID
+			,   INTRO
+			,   RULE
+			,   IS_SHOW                 ISSHOW
+			,   IMAGE
+			,   MEMBERS_PER_TEAM        MEMBERSPERTEAM
+			,   MAX_PARTICIPANT         MAXPARTICIPANT
+			,   WAIT_PARTICIPANT        WAITPARTICIPANT
+			,   TYPE
+			,   NUMBER_OF_PARTICIPANT   NUMBEROFPARTICIPANT
+			,   SEEDING_TYPE            SEEDINGTYPE
+			,   STATUS
+			,   WINNER
+			,   REGDATE
+		FROM grandprixes
+		WHERE grnd_no=#{grndNo} AND
+		num=#{num}
+	</select>
+	
+	<select id="selecRecentGrnd" resultType="Grandprix"
+		parameterType="int">
+	        SELECT
+			    GRND_NO                 GRNDNO
+			,   NUM
+			,   OWNER_NO                OWNERNO
+			,   PARTICIPANT_ANNOUNCE    PARTICIPANTANNOUNCE
+			,   PART_TYPE               PARTTYPE
+			,   IS_SHOW_PARTICIPANT     ISSHOWPARTICIPANT
+			,   IS_WANTED_PARTICIPANT   ISWANTEDPARTICIAPNT
+			,   IS_APPLICATION          ISAPPLICATION
+			,   START_DATE              STARTDATE
+			,   END_DATE                ENDDATE
+			,   END_DATE_APPLICATION    ENDDATEAPPLICATION
+			,   CHANNEL_ID              CHANNELID
+			,   INTRO
+			,   RULE
+			,   IS_SHOW                 ISSHOW
+			,   IMAGE
+			,   MEMBERS_PER_TEAM        MEMBERSPERTEAM
+			,   MAX_PARTICIPANT         MAXPARTICIPANT
+			,   WAIT_PARTICIPANT        WAITPARTICIPANT
+			,   TYPE
+			,   NUMBER_OF_PARTICIPANT   NUMBEROFPARTICIPANT
+			,   SEEDING_TYPE            SEEDINGTYPE
+			,   STATUS
+			,   WINNER
+			,   REGDATE
+	        FROM
+	            grandprixes
+	        WHERE
+	        	grnd_no = #{grndNo} AND  (status = 'P' or status = 'W')
+	        		</select>
+
+	<select id="selectRecentGrandprixesList" resultType="Grandprix">
+
+		SELECT
+		    GRND_NO                 GRNDNO
+		,   NUM
+		,   OWNER_NO                OWNERNO
+		,   PARTICIPANT_ANNOUNCE    PARTICIPANTANNOUNCE
+		,   PART_TYPE               PARTTYPE
+		,   IS_SHOW_PARTICIPANT     ISSHOWPARTICIPANT
+		,   IS_WANTED_PARTICIPANT   ISWANTEDPARTICIAPNT
+		,   IS_APPLICATION          ISAPPLICATION
+		,   START_DATE              STARTDATE
+		,   END_DATE                ENDDATE
+		,   END_DATE_APPLICATION    ENDDATEAPPLICATION
+		,   CHANNEL_ID              CHANNELID
+		,   INTRO
+		,   RULE
+		,   IS_SHOW                 ISSHOW
+		,   IMAGE
+		,   MEMBERS_PER_TEAM        MEMBERSPERTEAM
+		,   MAX_PARTICIPANT         MAXPARTICIPANT
+		,   WAIT_PARTICIPANT        WAITPARTICIPANT
+		,   TYPE
+		,   NUMBER_OF_PARTICIPANT   NUMBEROFPARTICIPANT
+		,   SEEDING_TYPE            SEEDINGTYPE
+		,   STATUS
+		,   WINNER
+		,   REGDATE
+		FROM
+		    GRANDPRIXES
+		WHERE status = 'P' or status = 'W'
+	</select>
+	
+		<update id="updateMaxparticipant" parameterType="Grandprix">
+		UPDATE grandprixes
+		SET MAX_PARTICIPANT = #{maxParticipant}
+		WHERE grnd_no = #{grndNo} AND num = #{num}
+	</update>
+
+</mapper>

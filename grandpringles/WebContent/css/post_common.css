@@ -1,0 +1,537 @@
+
+/*게시글에 대한 공통 CSS*/
+#BoxContent {
+    padding-top: 20px;
+    position: relative;
+    width: 1160px;
+    height: 970px;
+    top: -20px;
+    left: 0px;
+
+}
+
+/* 정렬 버튼 CSS */
+#BoxContent .btn_sort {
+    height: 30px;
+    width: 100px;
+    background: rgb(235,235,235);
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: none;
+    border-radius: 30px;
+}
+
+
+/*게시글 하나의 내용? 대한 CSS*/
+.post_Box{
+    width: 1000px;
+    height: 500px;
+    position: relative;
+    background: #E4E4E4;
+    top: 20px;
+    padding: 10px;
+    border: 3px solid #fff;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.post_Box>.post_Head {
+    width: 1000px;
+    height: 45px;
+}
+
+/*게시글 하나의 내용?의 제목 감싸는 박스모델*/
+.post_Head>.post_Title_Box {
+    width: 730px;
+    height: 40px;
+
+}
+
+/* 2_게시물 제목 */
+.post_Head>.post_Title_Box>.post_Title {
+    display: block;
+    background: transparent;
+    width: 650px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 25px;
+    font-weight: 600;
+    padding: 5px 5px 2px 10px;
+    border-bottom: 3px solid #BDBDBD;
+    float: left;
+}
+
+
+/* 3_게시물 추천 갯수 */
+.post_Head>.post_Title_Box>.post_Like {
+    display: block;
+    width:65px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 35px;
+    background: #fafafa;
+    float: left;
+    cursor: pointer;
+
+}
+
+/* 4_게시글 추천 폰트 어썸 */
+.post_Head>.post_Title_Box>.post_Like>i {
+    color: red;  
+    top: 7px;
+}
+
+.post_Head>.post_Title_Box>.post_Like>i.on {
+    color: red;    
+}
+
+
+/* 정렬 버튼들을 담은 BOX */
+#BoxContent .sort_Box{
+    width: 250px;
+    height: 35px;
+    float: left;
+    margin-left: 20px;
+}
+
+.post_Body {
+    margin-top: 10px;
+    width: 1000px;
+    height: 400px;
+    position: relative;
+}
+
+/* 5_게시물 내용 프리뷰 */
+.preview_Box {
+    display: block;
+    padding: 10px;
+    width: 980px;
+    height: 380px;
+    border-radius:10px;
+    background: #EEEEEE;
+    font-size: 17px;
+}
+
+.post_Foot {
+    margin-top: 10px;
+    width: 1000px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.btn_middle_button {
+    width:80px;                                /* 너비 */
+    height:30px;                                /* 높이 */
+    line-height: 24px;                          /* 글자의 수직 정렬 */
+    text-align: center;                         /* 글자의 수평 정렬 */
+    border:1px solid #BDBDBD;                 /* 보더 */
+    font-weight: 600;                           /* 글자 굵기 */
+    font-size:17px;                             /* 글자 크기 */
+    color:#616161;                              /* 글자색 */
+    background-color:rgb(230,230,230);                   /* 배경색 */
+    cursor:pointer;                             /* 커서 모양 */
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+   // background: #rgb(230,230,230);
+}
+
+/* 6번 중간 크기 버튼:hover */
+.btn_middle_button:hover {
+    color:#424242;
+    /*background-color:#F5F5F5; 기존 색상*/
+}
+
+.btn_small_button {
+    text-align: center;
+    border: 1px solid #BDBDBD;
+    width: 60px;
+    height: 29px;
+    line-height: 25px;
+    margin-right: 5px;
+}
+
+/* 7_작성 기록 (작성자, 작성 시간) */
+.content_Writer_Time {
+    margin-left: 10px;
+    color: #9E9E9E;
+    font-weight: 300;
+}
+
+
+/* 작성자와 시간을 떨어뜨리기 위한 마진 부여 */
+.writer {
+    margin-right: 20px;
+}
+
+/* 댓글 게시글에 대한 공통 CSS*/
+#BoxComment{
+    width: 1000px;
+    height: 500px;
+    position: relative;
+    background: #E4E4E4;
+    top: 20px;
+    padding: 10px;
+    border: 3px solid #fff;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+
+
+
+
+/* 최신순 */
+#DeleteBtn {
+    left: 120px;
+    margin-left: 15px;
+}
+
+
+/* 정렬 버튼들을 눌렀을 때 */
+#BoxContent .btn_sort:hover {
+    background: #E0E0E0;
+}
+
+/* 정렬 버튼들을 눌렀을 때 */
+#BoxContent .btn_sort:active {
+    box-shadow: 0 0px 0px;
+    background: #E0E0E0;
+}
+
+
+    /*  댓글 옆 정렬 박스 CSS */
+
+#BoxComment .Best_Sort{
+    width: 90px;                               /*너비*/
+    height: 30px;                               /*높이*/
+    background:rgb(235,235,235);         /*배경색*/
+    font-size: 16px;                            /*글자크기*/
+    color: #424242;                             /*글자색*/
+    line-height: 30px;                          /*폰트수직정렬*/
+    text-align: center;                         /*폰트수평정렬*/
+    border: 1px solid #BDBDBD;              /*border*/
+    /*border-radius: 30px;                        !*둥근보더*!*/
+    position: absolute;
+    left: 100px;
+    top: 4px;
+
+    /*Comment*/
+}
+/*    */
+
+#titleComment {
+    position: relative;
+    left: 10px;
+    background: transparent;
+    top: 5px;
+    width: 190px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 25px;
+    font-weight: 600;
+    padding: 5px 5px 2px 10px;
+    border-bottom: 3px solid #BDBDBD;
+
+
+
+}
+
+/*유저이름, 이미지 감싸는 박스*/
+
+.Commnet_User_Box {
+    width: 800px;
+    min-height: 80px;
+    display: inline-block;
+    top:20px;
+    left: 20px;
+    position: relative;
+    margin-bottom: 10px;
+
+}
+
+/* 사용자를 감싸는 Box */
+
+.Comment_User_name {
+    position: absolute;
+    display: inline-block;
+    width: 80px;
+    height: 10px;
+    line-height: 30px;
+    left: 0px;
+    top: 55px;
+    color: black;
+    font-weight: 300;
+    font-size: 11px;
+    
+   
+
+
+
+}
+
+/* 댓글 img를 감싸는 Box */
+
+.Comment_img_Box{
+    width: 80px;
+    height: 80px;
+    border-radius:100px;
+    display: inline-block;
+
+}
+
+/* 댓글 img 크기 */
+
+.Comment_img{
+    width: 50px;
+    height: 50px;
+    border-radius:100px;
+    display: inline-block;
+    border: 3px solid #BDBDBD;
+}
+
+/*메세지*/
+.Comment_Content {
+    min-width: 100px;
+    min-height: 40px;
+    background: #FAFAFA;
+    text-align: left;
+    line-height: 28px;
+    position: absolute;
+    border-radius:10px 10px 10px 10px ;
+
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: inline-block;
+    word-wrap:normal;
+    vertical-align: top;
+    padding: 10px;
+      
+    left: 70px;
+
+
+
+}
+
+/* 메세지 옆 가상 클래스*/
+.Comment_Content::before {
+    content: "";
+    /*!*color: transparent;*!*/
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    left:-10px;
+    top: 20px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid  #FAFAFA;
+
+}
+
+.Comment_many {
+
+
+    padding: 10px;
+    position: relative;
+    width: 950px;
+    height: 340px;
+    left: 25px;
+    top: 10px;
+    border-radius: 10px;
+    background: #EEEEEE;
+    overflow: auto;
+    margin-top: 10px;
+}
+
+/* 댓글작성 감싸는 Wrap */
+
+#writeComment {
+
+    width: 300px;
+    height: 49px;
+    position: relative;
+    bottom: 15px;
+    left: 30px;
+    margin-top: 40px;
+
+}
+
+/* 댓글작성란 and 버튼 Wrap */
+#writeCommentContents {
+
+
+    width: 600px;
+    height: 65px;
+    position: relative;
+    margin-top: 20px;
+    bottom: 0px;
+}
+
+#inputComment {
+    width: 500px;
+    height: 60px;
+    background: rgb(200,200,200);
+    font-size: 15px;
+    color: #424242;
+    line-height: 30px;
+    border: none;
+    padding-left: 10px;
+    /*position: absolute;*/
+    border-bottom: 1px solid #BDBDBD;
+
+
+
+
+}
+
+/*!* 댓글작성 글씨 및 CSS *!*/
+/*#writeCommentTitle {*/
+    /*width: 100px;*/
+    /*height: 20px;*/
+    /*background: rgb(235,235,235);*/
+    /*font-size: 15px;*/
+    /*color: #424242;*/
+    /*line-height: 20px;*/
+    /*text-align: center;*/
+    /*border: 1px solid #BDBDBD;*/
+    /*position: absolute;*/
+    /*top: 0px;*/
+
+
+/*}*/
+
+
+/* 댓글 크기 옆 추천수 */
+#countComment {
+    font-size: 24px;
+}
+
+/* 메세지 박스 안에있는 좋아요 하트 */
+
+.heart_font {
+    color: red;
+}
+
+/* 메세지 박스 안에있는 하트 옆 추천수 */
+
+.Commnet_like{
+    width: 50px;
+    line-height: 30px;
+    height: 30px;
+    bottom: 0px;
+    right: 5px;
+    color: red;
+    position: absolute;
+    text-decoration: none;
+    text-align: right;
+}
+
+.comment_liking {
+	margin-left: 5px;
+}
+
+.Commnet_like:hover{
+    cursor:pointer;
+}
+button:hover{
+    cursor: pointer;
+}
+/*등록날짜*/
+.Comment_regDate {
+    position: absolute;
+    bottom: -25px;
+    right: 5px;
+    font-size: 12px;
+}
+
+#btnComment {
+
+    width: 90px;
+    height: 65px;
+    background: rgb(235,235,235);
+    font-size: 13px;
+    color: #424242;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid #BDBDBD;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+
+}
+
+
+/*작성자 댓글*/
+.Writer_Commnet_User_Box {
+    margin-top: 20px;
+    width: 800px;
+    min-height: 80px;
+    display: inline-block;
+    top: 0px;
+    right:-130px;
+    position: relative;
+
+    /*background: gold;*/
+}
+.Writer_Comment_img_Box{
+
+    width: 50px;
+    height: 50px;
+    border-radius:100px;
+    position: absolute;
+    right: 10px;
+}
+.Writer_Comment_Content{
+
+    min-width: 100px;
+    min-height: 40px;
+    background: #FAFAFA;
+    text-align: left;
+    line-height: 28px;
+    position: absolute;
+    border-radius: 10px 10px 10px 10px;
+    top: 0px;
+    right: 80px;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: inline-block;
+    word-wrap: normal;
+    vertical-align: top;
+    padding: 10px;
+
+
+}
+.Writer_Comment_Content::before {
+    content: "";
+    /*!*color: transparent;*!*/
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    right:-10px;
+    top: 20px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid  #FAFAFA;
+
+}
+.Writer_Comment_User_name{
+    position: absolute;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    bottom: 0px;
+    text-align: right;
+    font-weight: 300;
+    font-size: 11px;
+    right:0px;
+
+}
+
+.Writer_Comment_regDate{
+    position: absolute;
+    bottom: -25px;
+    left: 5px;
+    font-size: 12px;
+}

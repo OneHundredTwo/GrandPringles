@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="users">
+<!--  객체  : User -->
+<!-- 각 mapper 파일을 구별해야 되기 대문에 namespace가 필요함(테이블명) -->
+
+
+<select id="selectOneNickname" resultType="String" parameterType="int">
+SELECT nickname
+FROM users
+WHERE no = #{no}
+</select>
+
+
+<select id="selectLoginUser" resultType="User" parameterType="User">
+	SELECT 	NO,
+			EMAIL,
+			PASSWORD,
+			NICKNAME,
+			PROFILE,
+			SEX,
+			PHONE,
+			GAME_NICKNAME gameNickname,
+			GAME_TIER gameTier,
+			POTATOCHIP,
+			REGDATE
+	FROM users
+	WHERE email=#{email} 
+	AND password=#{password}
+</select>
+
+<resultMap type="User" id="Streamer">
+	<result property="no" column="no"/>
+	<result property="email" column="email"/>
+	<result property="nickname" column="nickname"/>
+	<result property="profile" column="profile"/>
+</resultMap>
+<select id="selectStreamer" resultMap="Streamer" parameterType="string">
+		select u.no no,u.email email, u.nickname nickname, u.profile profile
+		from grandprix_names n
+		inner join users u on u.no = n.owner_no
+		where nickname = #{nickname}
+
+</select>
+
+
+<select id="selectSearchManager" resultType="User" parameterType="string">
+	SELECT 	NO,
+			EMAIL,
+			PASSWORD,
+			NICKNAME,
+			PROFILE,
+			SEX,
+			PHONE,
+			GAME_NICKNAME gameNickname,
+			GAME_TIER gameTier,
+			POTATOCHIP,
+			REGDATE
+	FROM users
+	WHERE NICKNAME=#{NICKNAME} 
+</select>
+
+<!-- 기원이꺼 -->
+<select id="selectStreamerDefault" resultMap="Streamer">
+		select u.no no,u.email email, u.nickname nickname, u.profile profile
+		from grandprix_names n
+		inner join users u on u.no = n.owner_no
+		ORDER BY 1
+</select>
+<!-- 형꺼 -->
+
+<insert id="insertUser"  parameterType="User">
+
+
+INSERT INTO users(no , email , password , nickname, profile, sex,phone , game_nickname, game_tier ,potatochip , regdate)
+VALUES(users_seq.nextval,#{email},#{password},#{nickname},#{profile},#{sex},#{phone},#{gameNickname},'S3',10000,systimestamp)
+
+
+</insert>
+<!-- 민호꺼  -->
+<update id="updateChips" parameterType="User">
+	UPDATE users set potatochip = #{potatochip}
+	WHERE no = #{no}
+</update>
+
+
+
+
+</mapper>

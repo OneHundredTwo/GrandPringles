@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boards">
+<!-- 각 mapper 파일을 구별해야 되기 대문에 namespace가 필요함(테이블명) -->
+
+	<insert id="insertBoard" parameterType="Board">
+	<selectKey keyProperty="boardNo" order="BEFORE" resultType="int">
+		SELECT boards_seq.nextval FROM dual
+	</selectKey>
+	INSERT INTO boards(
+				board_no, 
+				user_no, 
+				grnd_no, 
+				grnd_num, 
+				content, 
+				category, 
+				title, 
+				is_update, 
+				last_modified, 
+				view_cnt, 
+				liking, 
+				regdate, 
+				match_no, 
+				commnet_count)
+		VALUES(
+				#{boardNo},
+				#{userNo},
+				#{grndNo},
+				#{grndNum},
+				#{content}, 
+				#{category}, 
+				#{title}, 
+				'F', 
+				sysdate,
+				 0, 
+				 0, 
+				 systimestamp, 
+				 #{matchNo},
+				 0)
+	</insert>
+	
+	<select id="boardPopular" parameterType="int" resultType="Board">
+		select board_no boardNo, user_no userNo, grnd_no grndNo, grnd_num grndNum
+		, content, category,title, is_update isUpdate, last_modified lastModified, view_cnt viewCnt, liking,
+		 regdate, match_no matchNo, commnet_count commnetCount
+		from (select board_no, user_no, grnd_no, grnd_num 
+		, content, category,title, is_update , last_modified , view_cnt , liking,
+		 regdate, match_no , commnet_count 
+		from boards
+		where grnd_no=#{grndNo}
+		order by liking desc )
+		where rownum <![CDATA[ <= ]]>5
+	</select>
+	
+	
+		<select id="boardNew" parameterType="int" resultType="Board">
+		select board_no boardNo, user_no userNo, grnd_no grndNo, grnd_num grndNum
+		, content, category,title, is_update isUpdate, last_modified lastModified, view_cnt viewCnt, liking,
+		 regdate, match_no matchNo, commnet_count commnetCount
+		from (select board_no, user_no, grnd_no, grnd_num 
+		, content, category,title, is_update , last_modified , view_cnt , liking,
+		 regdate, match_no , commnet_count 
+		from boards
+		where grnd_no=#{grndNo}
+		order by regdate desc )
+		where rownum <![CDATA[ <= ]]>5
+	</select>
+	
+	<select id="selectList" resultType="Board" parameterType="PageVO">
+	SELECT boardNo, userNo, grndNo, grndNum, content, category , title, isUpdate, lastModified, viewCnt, liking, regdate, matchNo, commnetCount	
+	FROM (
+			SELECT boardNo, userNo, grndNo, grndNum, content, category , title, isUpdate, lastModified, viewCnt, liking, regdate, matchNo, commnetCount, rownum r
+      		FROM (      		
+      			  SELECT board_no boardNo, user_no userNo, grnd_no grndNo, grnd_num grndNum, content, category, title, is_update isUpdate, last_modified lastModified, view_cnt viewCnt, liking, regdate, match_no matchNo, commnet_count commnetCount                
+	        	  FROM boards
+	              ORDER BY
+	              <if test="order=='new'">
+	               regdate DESC
+	              </if>
+	              <if test="order=='hot'">
+	              liking DESC
+	              </if>
+	             )	             
+	      )        
+	WHERE r BETWEEN #{start} AND #{end}
+	</select>
+
+
+	<select id="selectTotal" resultType="int">
+		SELECT count(*)
+		FROM boards
+	</select>
+	
+
+	<select id="total" resultType="int" parameterType="map">
+		SELECT count(*)
+		FROM boards
+		
+		
+		<if test="type=='pop'">
+	      WHERE liking >= 5
+	    </if>
+	    
+		<if test="type=='free'">
+	      WHERE category = 'T'
+	    </if>
+		
+		<if test="type=='media'">
+	      WHERE category = 'M'	       
+	    </if>
+	    
+		<if test="type=='bet'">
+	      WHERE category = 'B'
+	    </if>
+	    
+	    <if test="type=='debate'">
+	      WHERE category = 'D'
+	    </if>
+	</select>
+	
+
+	<select id="selectSortPop" resultType="Board" parameterType="PageVO">
+	SELECT boardNo, userNo, grndNo, grndNum, content, category , title, isUpdate, lastModified, viewCnt, liking, regdate, matchNo, commnetCount	
+	FROM (
+			SELECT boardNo, userNo, grndNo, grndNum, content, category , title, isUpdate, lastModified, viewCnt, liking, regdate, matchNo, commnetCount, rownum r
+      		FROM (      		
+      			  SELECT board_no boardNo, user_no userNo, grnd_no grndNo, grnd_num grndNum, content, category, title, is_update isUpdate, last_modified lastModified, view_cnt viewCnt, liking, regdate, match_no matchNo, commnet_count commnetCount                
+	        	  FROM boards
+	              ORDER BY liking DESC
+	             )	             
+	      )        
+	WHERE r BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="board">
+	SELECT board_no boardNo, user_no userNo, grnd_no grndNo, grnd_num grndNum, content, category, title, is_update isUpdate, last_modified lastModified, view_cnt viewCnt, liking, regdate, match_no matchNo, commnet_count commnetCount
+	FROM boards
+	WHERE board_no = #{boardNo}
+	</select>
+	
+	<update id = "updateHit" parameterType="int">
+		UPDATE boards
+		SET view_cnt = view_cnt + 1
+		WHERE board_no = #{boardNo}
+	</update>
+	
+	<!-- 민호꺼 -->
+	
+		<select id="selectBoardList" resultType="Board" parameterType="java.util.Map">
+	SELECT boardNo, userNo, grndNo, grndNum, content, category , title, isUpdate, lastModified, viewCnt, liking, regdate, matchNo, commnetCount, nickname	
+	FROM (
+			SELECT boardNo, userNo, grndNo, grndNum, content, category , title, isUpdate, lastModified, viewCnt, liking, regdate, matchNo, commnetCount, rownum r, nickname
+      		FROM (      		
+      			  SELECT board_no boardNo, user_no userNo, grnd_no grndNo, grnd_num grndNum, content, category, title, is_update isUpdate, last_modified lastModified, view_cnt viewCnt, liking, b.regdate, match_no matchNo, commnet_count commnetCount, nickname                
+	        	  FROM boards b, users u	
+	        	  <if test="type=='pop'">
+	        	  WHERE liking >= 5
+	        	  </if>
+	        	  <if test="type=='free'">
+	        	  WHERE category = 'T'
+	        	  </if>	        
+	        	  <if test="type=='media'">
+	        	  WHERE category = 'M'
+	        	  </if>
+	        	  <if test="type=='bet'">
+	        	  WHERE category = 'B'
+	        	  </if>
+	        	  <if test="type=='debate'">
+	        	  WHERE category = 'D'
+	        	  </if>	       
+	        	  AND b.user_no = u.no
+	        	  AND b.grnd_no = #{grndNo}
+	        	  AND b.grnd_num = #{grndNum} 	  
+	              ORDER BY
+	              <if test="order=='new'">
+	               regdate DESC
+	              </if>
+	              <if test="order=='hot'">
+	              liking DESC
+	              </if>
+	             )	             
+	      )        
+	WHERE r BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="getBoardLike" resultType="int" parameterType="int">
+		SELECT liking
+		FROM boards
+		WHERE board_no = #{boardNo}
+	</select>
+
+	<select id="selectArticle" parameterType="Board" resultType="Board">
+		SELECT board_no boardNo, user_no userNo, grnd_no grndNo, grnd_num grndNum, content, category, title, is_update isUpdate, last_modified lastModified, view_cnt viewCnt, liking, b.regdate, match_no matchNo, commnet_count commnetCount, nickname 
+		FROM boards b, users u
+		WHERE board_no = #{boardNo}
+		AND grnd_no = #{grndNo}
+		AND grnd_num = #{grndNum}
+		AND b.user_no = u.no
+	</select>
+	
+	<select id="selectBetting" parameterType="Board" resultType="Board">
+		SELECT board_no boardNo, user_no userNo, b.grnd_no grndNo, b.grnd_num grndNum, content, category, title, is_update isUpdate, last_modified lastModified,
+			   view_cnt viewCnt, liking, b.regdate, b.match_no matchNo, commnet_count commnetCount, m.red red , m.blue blue
+		       , r.nickname redName , s.nickname blueName
+		FROM boards b, matchs m, users r, users s
+		WHERE category = 'B'
+		AND b.match_no = m.no
+		AND b.grnd_no = #{grndNo}
+		AND b.grnd_num = #{grndNum}
+		AND board_no = #{boardNo}	
+		AND m.red = r.no
+		AND m.blue = s.no 
+	</select>
+	
+		<update id = "viewCount" parameterType="int">
+		UPDATE boards
+		SET view_cnt = view_cnt + 1
+		WHERE board_no = #{boardNo}
+	</update>
+	
+		<update id = "plusLike" parameterType="int">
+		UPDATE boards
+		SET liking = liking + 1
+		WHERE board_no = #{boardNo}
+	</update>
+	
+		<update id = "minusLike" parameterType="int">
+		UPDATE boards
+		SET liking = liking - 1
+		WHERE board_no = #{boardNo}
+	</update>
+	
+		<delete id="deleteBoard" parameterType="int">
+		DELETE boards
+		WHERE board_no = #{boardNo}	
+	</delete>
+	
+		<update id="updateBoard" parameterType="board">
+		UPDATE boards SET
+			title = #{title},
+			content = #{content},
+			category = #{category},
+			match_no = #{matchNo}	
+		WHERE board_no = #{boardNo}
+	</update>
+	
+</mapper>

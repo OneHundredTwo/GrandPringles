@@ -1,0 +1,221 @@
+html{
+    width:100%;
+    height:100%;
+}
+body{
+    width:100%;
+    height:100%;
+    font-family:'Noto Sans KR',sans-serif;
+}
+#wrap {
+    width: 1200px;
+    height: 800px;
+    overflow: hidden;
+    margin: auto;
+    background:#212121;
+}
+#header,#footer{
+    position:relative;
+
+    width: 100%;
+    height: 80px;
+
+    background: #B71C1C;
+
+    line-height: 80px;
+}
+#content{
+    min-height: 300px;
+
+    background: rgb(235,235,235);
+}
+#header .template_btn, #footer .template_btn{
+    display:inline-block;
+
+    width:130px;
+    height:80px;
+
+    vertical-align: top;
+    border: 0px;
+    color: #000;
+    font-size:20px;
+    line-height: 80px;
+    text-align:center;
+    text-decoration: none;
+    background: #B71C1C;
+    transition:0.2s ease;
+}
+/*circle_btn�븯怨� btn�븯怨� 臾띠쓣�닔 �엳�뒗 遺�遺꾩씠 �엳�뒗 寃껉컳���뜲, 洹몃읆 circle_btn�씤 �눊�냽�뱾�뿉�떎媛� circle btn �쑝濡� �겢�옒�뒪瑜� 吏��젙�빐以섏빞�릺怨�.*/
+#header .circle_btn, #footer .circle_btn{
+    display:inline-block;
+    width:65px;
+    height:65px;
+    border-radius: 40px;
+    vertical-align: top;
+    cursor:pointer;
+    transition:0.2s ease;
+}
+
+/*btn�겮由� 臾띠쓣寃� 蹂댁씠�뒗嫄� 媛숈��뜲, �씪�떒 btn�쓣 �듅�젙�븯寃� 紐낆떆�븯�룄濡� �뻽�쑝�땲源�
+紐⑤뱺 �럹�씠吏��뿉�꽌�쓽 btn�씠 媛숈�紐⑥뼇�씠�씪硫� btn�쑝濡� 鍮쇨퀬
+吏�湲덉� btn�쑝濡� 鍮쇰깂. 洹몃━怨� 媛곴컖 div�듅吏뺤뿉 留욎떠�꽌 而ㅼ뒪�꽣留덉씠吏�*/
+#header .template_btn:hover, #header .circle_btn:hover{
+    color:#fff;
+
+    background:#E53935;
+}
+#footer .template_btn:hover{
+
+    color:#fff;
+    text-decoration:underline;
+
+    background:#E53935;
+}
+
+#gnb{
+    width:100%;
+    position:absolute;
+}
+/*肄붾뵫 �닚�꽌�뒗 �쇊履쎌뿉�꽌遺��꽣,
+right�겢�옒�뒪瑜� �쟻�슜�븳 �슂�냼�뒗 �삤瑜몄そ遺��꽣*/
+#gnb #headerLogo{
+
+    width:150px;
+    height:80px;
+
+    background-image:url("../img/template_header_logo_test.png");
+    background-position:center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    float:left;
+}
+
+
+#gnb .search_box{
+    position:relative;
+
+    width:180px;
+
+    background-color:transparent;
+    vertical-align: middle;
+}
+
+#gnb #inpGlobalSearch{
+    display:inline-block;
+
+    width:180px;
+    height:40px;
+    border:3px solid #fff;
+    border-radius: 30px;
+    padding-left:10px;
+
+    color:#fff;
+    background-color:transparent;
+
+    transition:0.3s ease;
+}
+#gnb #inpGlobalSearch:focus{
+    border-color:#fff;
+}
+#gnb #btnSearch{
+    position:absolute;
+    right:5px;
+    top:5px;
+
+    border:none;
+
+    background:transparent;
+    cursor:pointer;
+}
+#gnb #btnSearch>i{
+    color:#dafffa;
+}
+
+/*gnb �삤瑜몄そ */
+
+#gnb .right{
+    float:right;
+    position:relative;
+}
+
+/*login status�뿉 �빐�떦�븯�뒗 �쑀��濡쒓퀬, 媛먯옄移� �꽕�젙*/
+#boxLoginStatus #linkUserInfo{
+    display:inline-block;
+
+    vertical-align:middle;
+}
+
+#potatochip{
+    color:#f7d950;
+    font-size:12px;
+
+    vertical-align:middle;
+}
+#potatochip>img{
+    display:inline-block;
+
+    width:40px;
+    height:40px;
+
+    vertical-align:middle;
+}
+
+/*臾몄젣 1. �씠嫄� �솢 媛��슫�뜲濡� �븞��, �씠寃껊쭔! div�씪�꽌洹몃윴媛�?
+=> ... div濡� 臾띠뼱�꽌 �삤瑜몄そ�쑝濡� 蹂대궡�땲源� �릱�뼱... */
+#gnb .dots{ /* �슦�꽑�닚�쐞 �넂�뿬踰꾨━湲�~ */
+    font-size:35px;
+    color:#fff;
+
+    text-align: center;
+    line-height: 65px;
+    vertical-align: middle;
+
+}
+
+#listPopupDots{
+    display: none;
+    position:absolute;
+    top:80px;
+    left:-33px;
+
+    line-height: 0;
+}
+
+/*�쐞�뿉 �궪媛곹삎*/
+#listPopupDots::before{
+    position:absolute;
+    left:55px;
+    top:-10px;
+
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-bottom:10px solid #B71C1C;
+
+    content:"";
+}
+/*
+臾몄젣 2.
+li�쓽 height媛� �솢 80�씠 �릺踰꾨━�뒗嫄멸퉴... block�젅踰⑥씠硫� height�� 而⑦뀗痢좎쓽 �겕湲곕줈 �젙�빐吏��뒗嫄� �븘�땶媛�... �솢... .btn�쓣 60�쑝濡� 以꾩뿬�룄 80�씤嫄곕낫硫� header�쓽 height瑜� �긽�냽諛쏅뒗嫄곌컳���뜲 ... �솢 ... �솢�깘 �솢�깘怨� !!!*/
+#gnb #listPopupDots .temp{
+    height:60px;
+
+    line-height: 60px;
+    font-size:15px;
+
+    background:#E53935;
+}
+#gnb #listPopupDots .btn:hover{
+    background:#E53935;
+}
+
+#footer .copyright{
+    float:right;
+
+    font-size:15px;
+}
+
+/* footer �쐞移� 議곗젅 */
+#footer {
+    float: left;
+
+}
