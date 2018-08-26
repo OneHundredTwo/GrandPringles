@@ -15,5 +15,9 @@
 ### 프론트 엔드
 * 사용 라이브러리
 ![jquery,underscore,moment](https://github.com/OneHundredTwo/Athego/blob/master/img/front_end_libs.png "프론트엔드 라이브러리")
+* 대진표 컴포넌트 개발(순수 jquery, css 개발)
+	* 참가자 수에 따라 테이블 크기 변화
+![match table](https://github.com/OneHundredTwo/GrandPringles/blob/master/img/match_table.png "대진표")
+
 
 
