@@ -18,7 +18,7 @@
 * 대진표 컴포넌트 개발
 	* 참가자 수에 따라 라운드 및 경기수 변화
 ![match table](https://github.com/OneHundredTwo/GrandPringles/blob/master/img/match_table.png "대진표")
-	* 경기 스케쥴 설정 컴포넌트 개발(toast time picker api 사용)
+	* 경기 스케쥴 설정 컴포넌트 개발(toast time picker 라이브러리 사용)
 ![match scheduler](https://github.com/OneHundredTwo/GrandPringles/blob/master/img/match_scheduler.png "경기 일정변경")
 	* 경기 상태를 반영하는 경기 컴포넌트 개발
 ![match status](https://github.com/OneHundredTwo/GrandPringles/blob/master/img/match_status.png "경기 상태")
@@ -26,3 +26,7 @@
 ![game controller](https://github.com/OneHundredTwo/GrandPringles/blob/master/img/game_controller.png "게임 컨트롤러")
 * 참가자 관리 UI 개발
 ![manage participations](https://github.com/OneHundredTwo/GrandPringles/blob/master/img/manage_participations.png "참가자 관리")
+
+### 백엔드
+* 대회관리 페이지가 로드될때 비동기식으로 해당 대회의 대진표 정보 요청, 다수의 테이블에 분포되어있는 대진표 정보를 한 JSON으로 구조화하여 응답
+![server match chart](https://github.com/OneHundredTwo/GrandPringles/blob/master/img/server_match_table.png "대진표 요청응답")
