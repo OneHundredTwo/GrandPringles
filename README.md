@@ -1,5 +1,5 @@
 # Grangpringles
-![그랑 프링글스](logo.png "그랑프링글스") 
+![그랑 프링글스](https://github.com/OneHundredTwo/GrangPringles/blob/master/img/logo.png "그랑프링글스") 
 
 > 누구나 소규모 온라인게임대회를 개최할 수 있는, 게임대회 플랫폼 사이트 입니다
 
