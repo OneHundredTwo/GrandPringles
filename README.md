@@ -14,3 +14,6 @@
 ## 개발 파트
 ### 프론트 엔드
 * 사용 라이브러리
+![jquery,underscore,moment](https://github.com/OneHundredTwo/Athego/blob/master/img/front_end_libs.png "프론트엔드 라이브러리")
+
+
