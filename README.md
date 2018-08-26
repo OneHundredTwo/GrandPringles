@@ -1,21 +1,16 @@
-# MasterOfMountain
+# Grangpringles
+![그랑 프링글스](logo.png "그랑프링글스") 
 
-> 대한민국 100대 명산 데이터를 바탕으로 등산로 및 등산커뮤니티기능을 제공하는 안드로이드 어플리케이션 입니다.
-
-
-## [팀 소개 및 기획](https://github.com/OneHundredTwo/GraduationProject.git/forReadme/기획및설계.pdf)
+> 누구나 소규모 온라인게임대회를 개최할 수 있는, 게임대회 플랫폼 사이트 입니다
 
 ## 개발 환경
-* **개발언어** : JAVA 9, XML, JSP
-* **WAS** : Apache Tomcat 9
-* **IDE** : Eclipse 4.6 Neon, Android Studio 2.3 
+* **개발언어** : JAVA 8, HTML5, javascript, css, JSP(el, jstl)
+* **WAS** : Apache Tomcat 8.5
+* **Server Framework** : Spring 5, Spring web MVC 5(RESTful), Mybatis 3.4
+* **IDE** : Eclipse 4.7 Oxygen, Web Storm 
 * **OS** : windows 10
-* **DBMS** : Mysql 5.7, SQLite
-* **Android Project 관리도구** : Gradle
+* **DBMS** : Oracle 11g SE
 
 ## 개발 파트
-### 안드로이드
-* 스케쥴러
-
-### 서버
-*  FCM(Firebase Cloude Message) API를 이용한 Push 알림 메세지 
+### 프론트 엔드
+* 사용 라이브러리
