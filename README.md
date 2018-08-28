@@ -30,3 +30,6 @@
 ### 백엔드
 * 대회관리 페이지가 로드될때 비동기식으로 해당 대회의 대진표 정보 요청, 다수의 테이블에 분포되어있는 대진표 정보를 한 JSON으로 구조화하여 응답
 ![server match chart](https://github.com/OneHundredTwo/GrandPringles/blob/master/img/server_match_table.png "대진표 요청응답")
+* 경기 및 게임 상태를 변경하는 비동기요청에 따라 CRUD 작업 및, 이벤트가 발생한 Match의 Update 데이터를 반환하여 템플릿 적용.
+![server match update](https://github.com/OneHundredTwo/GrandPringles/blob/master/img/server_match_game_controller.png "서버 경기 업데이트")
+* 참가자 승인, 거절, 인원제한 변경 처리

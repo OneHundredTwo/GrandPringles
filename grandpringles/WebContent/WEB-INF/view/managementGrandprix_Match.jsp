@@ -762,6 +762,7 @@
 			dataType:"json",
 			error:function(){alert("start game error")},
 			success:function(json){
+				console.log(json);
 				var onEls = info.find(".on");
 				var matchInfo = {
 						matchCnt:matchCnt,
