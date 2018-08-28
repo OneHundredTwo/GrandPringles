@@ -15,7 +15,7 @@
 ### 프론트 엔드
 * 사용 라이브러리
 ![jquery,underscore,moment](https://github.com/OneHundredTwo/GrandPringles/blob/master/img/front_end_libs.png "프론트엔드 라이브러리")
-* 대진표 컴포넌트 개발
+* svg와 css, jquery를 이용해 대진표 컴포넌트 개발
 	* 참가자 수에 따라 라운드 및 경기수 변화
 ![match table](https://github.com/OneHundredTwo/GrandPringles/blob/master/img/match_table.png "대진표")
 	* 경기 스케쥴 설정 컴포넌트 개발(toast time picker 라이브러리 사용)
